@@ -49,6 +49,22 @@ fetch('./films.json')
         titleContainer.appendChild(button2)
 
         titleContainer.appendChild(button3)
+
+        // const checkAnswer = () => {
+        //
+        //
+        // }
+        button1.addEventListener('click',     () => {
+            if (button1.textContent === correctAnswer) {
+                return console.log('correct')
+
+            } else if (button1.textContent === wrongAnswer1 || button1.textContent === wrongAnswer2){
+                return console.log('wrong mate')
+            }
+        })
+        // button2.addEventListener('click', checkAnswer)
+        // button3.addEventListener('click', checkAnswer)
+
     })
 
 
