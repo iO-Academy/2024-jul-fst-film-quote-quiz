@@ -120,6 +120,41 @@ header {
     color: #FFF;
 }
 
+.gameButtons:hover {
+    cursor: pointer;
+}
+
+.gameScreen {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top:3rem;
+}
+
+.quoteContainer {
+    margin: 2rem 3rem;
+}
+
+.titleContainer {
+    display:flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+.quoteContainer p {
+    font-family: 'NeueMontrealItalic', sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+button {
+    padding: 1rem;
+    border-radius: 10%;
+    filter: drop-shadow(8px 5px 10px #000000);
+    width: 13rem;
+}
+
 @media (max-width: 600px) {
     .instructions p {
         font-size: 0.7rem;
@@ -128,4 +163,18 @@ header {
     .instructions {
         width: 68.5%;
     }
+
+    .gameScreen {
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    .titleContainer {
+        flex-direction: column;
+    }
+
+    .quoteContainer p {
+        font-size: 1.2rem;
+    }
+
 }
