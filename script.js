@@ -1,6 +1,6 @@
-const instructionsButton = document.querySelector('.instructions_button')
-const instructions = document.querySelector('.modal_container')
-const closeButton = document.querySelector('.close_button')
+const instructionsButton = document.querySelector('.instructionsButton')
+const instructions = document.querySelector('.modalContainer')
+const closeButton = document.querySelector('.closeButton')
 const modal = () => {
     if (instructions.style.display === 'none') {
         instructions.style.display = 'flex';
@@ -12,10 +12,3 @@ const modal = () => {
 
 instructionsButton.addEventListener('click', modal)
 closeButton.addEventListener('click', modal)
-
-
-
-
-
-
-

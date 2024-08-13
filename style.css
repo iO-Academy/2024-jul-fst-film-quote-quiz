@@ -1,61 +1,57 @@
 @font-face {
     font-family: 'NeueMontrealBook';
-    src: url('PPNeueMontreal-Book.otf') format('opentype');
+    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealItalic';
-    src: url('PPNeueMontreal-Italic.otf') format('opentype');
+    src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealMedium';
-    src: url('PPNeueMontreal-Medium.otf') format('opentype');
+    src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealSemiBoldItalic';
-    src: url('PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+    src: url('fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealThin';
-    src: url('PPNeueMontreal-Thin.otf') format('opentype');
+    src: url('fonts/PPNeueMontreal-Thin.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'GoshaSansBold';
-    src: url('PPGoshaSans-Bold.otf') format('opentype');
+    src: url('fonts/PPGoshaSans-Bold.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'GoshaSansRegular';
-    src: url('PPGoshaSans-Regular.otf') format('opentype');
+    src: url('fonts/PPGoshaSans-Regular.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 
-.top_container {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    position: relative;
+body {
+    font-family: GoshaSansBold, sans-serif;
 }
 
 header {
-    font-family: GoshaSansBold, sans-serif;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -63,7 +59,13 @@ header {
     color: #FFF;
 }
 
-.app_title {
+.topContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.appTitle {
     font-family: GoshaSansBold, sans-serif;
 }
 
@@ -71,11 +73,11 @@ header {
     font-family: GoshaSansBold, sans-serif;
 }
 
-.instructions_button {
+.instructionsButton {
     font-family: GoshaSansBold, sans-serif;
 }
 
-.instructions .close_button {
+.instructions .closeButton {
     font-family: GoshaSansBold, sans-serif;
     width: 5rem;
     border: solid black 1px;
@@ -88,11 +90,11 @@ header {
     font-family: GoshaSansBold, sans-serif;
 }
 
-.modal_container {
+.modalContainer {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    top: -4rem;
+    top: 0;
     left: 0;
     display: none;
     justify-content: center;
@@ -108,7 +110,7 @@ header {
     padding: 2rem;
 }
 
-.game_buttons {
+.gameButtons {
     width: 60%;
     display: flex;
     justify-content: space-between;
@@ -121,10 +123,6 @@ header {
 @media (max-width: 600px) {
     .instructions p {
         font-size: 0.7rem;
-    }
-
-    .modal_container {
-        top: 0.06rem;
     }
 
     .instructions {
