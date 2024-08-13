@@ -8,13 +8,19 @@ function shuffleArray(array) {
     }
 }
 
+let score = 0
+const scoreBoxElem = document.querySelector('.scoreBox')
+
 const playGame = (filmTitles, films) => {
     playButton.remove()
     const checkAnswer = (button) => {
         button.addEventListener('click', () => {
             if (button.textContent === correctAnswer) {
                 button.style.background = '#04ac04'
-                //score++
+                score++
+                scoreBoxElem.textContent = score
+                console.log(score)
+
                 //trigger next question
 
             } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
@@ -86,7 +92,59 @@ const modal = () => {
     else {
         instructions.style.display = 'none';
     }
+
+
 }
 
 instructionsButton.addEventListener('click', modal)
 closeButton.addEventListener('click', modal)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
