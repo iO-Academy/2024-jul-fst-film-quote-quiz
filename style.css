@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'NeueMontrealBook';
+    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealItalic';
+    src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealMedium';
+    src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealSemiBoldItalic';
+    src: url('fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealThin';
+    src: url('fonts/PPNeueMontreal-Thin.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GoshaSansBold';
+    src: url('fonts/PPGoshaSans-Bold.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GoshaSansRegular';
+    src: url('fonts/PPGoshaSans-Regular.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+body {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #661D09;
+    color: #FFF;
+}
+
+.topContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.appTitle {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.instructions p {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.instructionsButton {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.instructions .closeButton {
+    font-family: GoshaSansBold, sans-serif;
+    width: 5rem;
+    border: solid black 1px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: .5rem;
+}
+
+.play {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.modalContainer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions{
+    font-family: GoshaSansBold, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    width: 50%;
+    padding: 2rem;
+}
+
+.gameButtons {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: #661D09;
+    color: #FFF;
+}
+
+@media (max-width: 600px) {
+    .instructions p {
+        font-size: 0.7rem;
+    }
+
+    .instructions {
+        width: 68.5%;
+    }
+}

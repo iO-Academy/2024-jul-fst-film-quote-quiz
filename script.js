@@ -1,4 +1,4 @@
-const playButton = document.querySelector('.playButton')
+const playButton = document.querySelector('.play')
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -68,8 +68,6 @@ const playGame = (filmTitles, films) => {
     return films
 }
 
-
-
 fetch('./films.json')
     .then((response) => response.json())
     .then((json) => {
@@ -78,8 +76,17 @@ fetch('./films.json')
         playButton.addEventListener('click', () => playGame(filmTitles, films))
     })
 
+const instructionsButton = document.querySelector('.instructionsButton')
+const instructions = document.querySelector('.modalContainer')
+const closeButton = document.querySelector('.closeButton')
+const modal = () => {
+    if (instructions.style.display === 'none') {
+        instructions.style.display = 'flex';
+    }
+    else {
+        instructions.style.display = 'none';
+    }
+}
 
-
-
-
-
+instructionsButton.addEventListener('click', modal)
+closeButton.addEventListener('click', modal)
