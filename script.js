@@ -1,4 +1,5 @@
 const playButton = document.querySelector('.play')
+const playMenu = document.querySelector('.gameButtons')
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -9,7 +10,7 @@ function shuffleArray(array) {
 }
 
 const playGame = (filmTitles, films) => {
-    playButton.remove()
+    playMenu.remove()
     const checkAnswer = (button) => {
         button.addEventListener('click', () => {
             if (button.textContent === correctAnswer) {
