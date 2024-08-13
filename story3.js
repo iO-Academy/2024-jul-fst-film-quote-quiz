@@ -13,7 +13,6 @@ fetch('./films.json')
         }
 //shuffling film object
         shuffleArray(films)
-        console.log(films)
 //Getting quote
         const currentQuote = films.pop()
         const quoteContainer = document.querySelector('.quoteContainer')
