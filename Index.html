@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Game</title>
     <script src="game_timer.js" defer></script>
+    <link rel="stylesheet" href="gametimer.css">
 </head>
 <body>
 <section class="timer">
@@ -13,17 +14,30 @@
 
 <div>
     <button class="playButton">Play</button>
+    <button class="gameOverBtn">Game Over</button>
+    <button class="pauseBtn">Pause</button>
 </div>
 
 
 <div class="quoteContainer">
-    <button class="optionButton">Option 1</button>
-    <button class="optionButton">Option 2</button>
-    <button class="optionButton">Option 3</button>
+    <button class="optionButton1">Option 1</button>
+    <button class="optionButton2">Option 2</button>
+    <button class="optionButton3">Option 3</button>
     <div class="gameDisplay"></div>
 </div>
 
-
+<div class="overlay hidden">
+<dialog class="gameOverModal hidden">
+    <div class="modalStyle">
+    <h2>Game Over!</h2>
+    <p class="score_intro">Your score: <span class="score"></span></p>
+    <form method="dialog">
+        <button class="btn close">Close</button>
+        <button class="btn reset">Reset</button>
+    </form>
+    </div>
+</dialog>
+</div>
 
 </body>
 </html>
