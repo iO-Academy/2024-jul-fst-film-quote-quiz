@@ -8,9 +8,6 @@ function shuffleArray(array) {
     }
 }
 
-const hintFunction = () => {
-
-}
 const playGame = (filmTitles, films) => {
     playButton.remove()
     const checkAnswer = (button) => {
@@ -78,8 +75,6 @@ const playGame = (filmTitles, films) => {
     hintButton.addEventListener('click', () => {
         quoteElem.textContent =  "\"" + currentQuote.quote + "\"" + ' ~ ' + currentQuote.year
     })
-
-
 
     return films
 }
