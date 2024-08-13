@@ -2,10 +2,3 @@ button {
     font-size: 25pt;
 }
 
-.correctButton {
-    background-color: #04ac04;
-}
-
-.wrongButton {
-    background-color: red;
-}
