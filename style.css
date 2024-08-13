@@ -1,29 +1,147 @@
-.top_container {
-    border: solid black 2px;
-    display: flex;
-    justify-content: center;
+@font-face {
+    font-family: 'NeueMontrealBook';
+    src: url('PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
 }
 
-header {
+@font-face {
+    font-family: 'NeueMontrealBook';
+    src: url('PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealBook';
+    src: url('PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealItalic';
+    src: url('PPNeueMontreal-Italic.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealMedium';
+    src: url('PPNeueMontreal-Medium.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealSemiBoldItalic';
+    src: url('PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueMontrealThin';
+    src: url('PPNeueMontreal-Thin.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GoshaSansBold';
+    src: url('PPGoshaSans-Bold.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GoshaSansRegular';
+    src: url('PPGoshaSans-Regular.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+.top_container {
     display: flex;
     justify-content: center;
     align-content: center;
+    position: relative;
+}
+
+header {
+    font-family: GoshaSansBold, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #661D09;
+    color: #FFF;
+}
+
+h1 {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+p {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.instructions_button {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+button {
+    font-family: GoshaSansBold, sans-serif;
+    width: 5rem;
+    border: solid black 1px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: .5rem;
+}
+
+.play {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.modal_container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: -4rem;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .instructions{
-    display: none;
+    font-family: GoshaSansBold, sans-serif;
     text-align: center;
     background-color: black;
     color: white;
-    width: 60%;
-    left: 20%;
+    width: 50%;
+    padding: 2rem;
 }
 
 .game_buttons {
     width: 60%;
-    border: solid black 2px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 3rem;
+    background-color: #661D09;
+    color: #FFF;
+}
 
+@media (max-width: 600px) {
+    .instructions p {
+        font-size: 0.7rem;
+    }
+
+    .modal_container {
+        top: 0.06rem;
+    }
+
+    .instructions {
+        width: 68.5%;
+    }
 }
