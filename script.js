@@ -60,10 +60,7 @@ const playGame = (filmTitles, films) => {
     titleContainer.appendChild(button1)
     titleContainer.appendChild(button2)
     titleContainer.appendChild(button3)
-
-    //This function checks to see if button has been clicked, then runs if statement
-
-
+    
     //calling function against each button so that any of them can be pressed
     checkAnswer(button1)
     checkAnswer(button2)
@@ -79,8 +76,6 @@ fetch('./films.json')
         const filmTitles = json.films
         const films = json.films
         playButton.addEventListener('click', () => playGame(filmTitles, films))
-
-
     })
 
 
