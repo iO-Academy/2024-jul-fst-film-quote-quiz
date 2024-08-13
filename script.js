@@ -8,6 +8,9 @@ function shuffleArray(array) {
     }
 }
 
+const hintFunction = () => {
+
+}
 const playGame = (filmTitles, films) => {
     playButton.remove()
     const checkAnswer = (button) => {
@@ -41,29 +44,43 @@ const playGame = (filmTitles, films) => {
     const wrongAnswer2 = filmTitles[1].title
     const correctAnswer = currentQuote.title
 
+
     //putting the potential answers in an array then shuffling them so that the order they show on the page
     //isn't always the same
     const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
     shuffleArray(answers)
 
     const titleContainer = document.querySelector('.titleContainer')
+    const hintContainer = document.querySelector('.hintContainer')
+
     const button1 = document.createElement('button')
     const button2 = document.createElement('button')
     const button3 = document.createElement('button')
+    const hintButton = document.createElement('button')
 
     //using the shuffled answers array to choose which order the buttons display
     button1.textContent = answers[0]
     button2.textContent = answers[1]
     button3.textContent = answers[2]
+    hintButton.textContent = 'Hint?'
 
     titleContainer.appendChild(button1)
     titleContainer.appendChild(button2)
     titleContainer.appendChild(button3)
+    hintContainer.appendChild(hintButton)
     
     //calling function against each button so that any of them can be pressed
     checkAnswer(button1)
     checkAnswer(button2)
     checkAnswer(button3)
+
+    // hint
+    hintButton.addEventListener('click', () => {
+        quoteElem.textContent =  "\"" + currentQuote.quote + "\"" + ' ~ ' + currentQuote.year
+    })
+
+
+
     return films
 }
 
