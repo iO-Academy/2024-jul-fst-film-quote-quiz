@@ -55,16 +55,39 @@ fetch('./films.json')
         titleContainer.appendChild(button3)
 
         const checkAnswer = () => {
+
+
+        }
+        button1.addEventListener('click',     () => {
             if (button1.textContent === correctAnswer) {
-                return console.log('correct')
+                button1.style.background = '#04ac04'
 
             } else if (button1.textContent === wrongAnswer1 || button1.textContent === wrongAnswer2){
-                return console.log('wrong mate')
+                button1.style.background = 'red'
             }
-        }
-        button1.addEventListener('click', checkAnswer)
-        button2.addEventListener('click', checkAnswer)
-        button3.addEventListener('click', checkAnswer)
+            //move on to next question
+        })
+        button2.addEventListener('click',     () => {
+            if (button2.textContent === correctAnswer) {
+                button2.style.background = '#04ac04'
+
+            } else if (button2.textContent === wrongAnswer1 || button2.textContent === wrongAnswer2){
+                button2.style.background = 'red'
+            }
+            //move on to next question
+
+        })
+        button3.addEventListener('click',     () => {
+            if (button3.textContent === correctAnswer) {
+                button3.style.background = '#04ac04'
+
+            } else if (button3.textContent === wrongAnswer1 || button3.textContent === wrongAnswer2){
+                button3.style.background = 'red'
+            }
+            //move on to next question
+
+        })
+
 
     })
 
