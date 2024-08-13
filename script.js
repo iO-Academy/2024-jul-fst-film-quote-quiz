@@ -81,6 +81,7 @@ const closeButton = document.querySelector('.closeButton')
 const modal = () => {
     if (instructions.style.display === 'none') {
         instructions.style.display = 'flex';
+        instructions.style.zIndex = '1';
     }
     else {
         instructions.style.display = 'none';

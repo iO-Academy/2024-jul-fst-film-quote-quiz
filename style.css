@@ -131,6 +131,7 @@ header {
     justify-content: center;
     padding-top:3rem;
 }
+
 .quoteContainer {
     margin: 2rem 3rem;
 }
@@ -138,7 +139,6 @@ header {
 .titleContainer {
     display:flex;
     flex-direction: row;
-    /*justify-content: space-evenly;*/
     gap: 4rem;
 }
 
