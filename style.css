@@ -6,20 +6,6 @@
 }
 
 @font-face {
-    font-family: 'NeueMontrealBook';
-    src: url('PPNeueMontreal-Book.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMontrealBook';
-    src: url('PPNeueMontreal-Book.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'NeueMontrealItalic';
     src: url('PPNeueMontreal-Italic.otf') format('opentype');
     font-weight: 900;
@@ -77,11 +63,11 @@ header {
     color: #FFF;
 }
 
-h1 {
+.app_title {
     font-family: GoshaSansBold, sans-serif;
 }
 
-p {
+.instructions p {
     font-family: GoshaSansBold, sans-serif;
 }
 
@@ -89,7 +75,7 @@ p {
     font-family: GoshaSansBold, sans-serif;
 }
 
-button {
+.instructions .close_button {
     font-family: GoshaSansBold, sans-serif;
     width: 5rem;
     border: solid black 1px;
