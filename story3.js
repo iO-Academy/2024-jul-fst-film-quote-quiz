@@ -32,6 +32,7 @@ fetch('./films.json')
         const wrongAnswer1 = films[0].title
         const wrongAnswer2 = films[1].title
         const correctAnswer = currentQuote.title
+
         //putting the potential answers in an array then shuffling them so that the order they show on the page
         //isn't always the same
         const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
@@ -41,8 +42,8 @@ fetch('./films.json')
         const titleContainer = document.querySelector('.titleContainer')
         const button1 = document.createElement('button')
         const button2 = document.createElement('button')
-
         const button3 = document.createElement('button')
+
         //using the shuffled answers array to choose which order the buttons display
         button1.textContent = answers[0]
         button2.textContent = answers[1]
@@ -54,39 +55,28 @@ fetch('./films.json')
         titleContainer.appendChild(button2)
         titleContainer.appendChild(button3)
 
-        const checkAnswer = () => {
+
+        //This function checks to see if button has been clicked, then runs if statement
+        const checkAnswer = (button) => {
+            button.addEventListener('click', () => {
+                if (button.textContent === correctAnswer) {
+                    button.style.background = '#04ac04'
+                    //trigger next question
+                    //score++
+
+                } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2){
+                    button.style.background = 'red'
+                    //trigger next question
+                }
+            })
 
 
         }
-        button1.addEventListener('click',     () => {
-            if (button1.textContent === correctAnswer) {
-                button1.style.background = '#04ac04'
 
-            } else if (button1.textContent === wrongAnswer1 || button1.textContent === wrongAnswer2){
-                button1.style.background = 'red'
-            }
-            //move on to next question
-        })
-        button2.addEventListener('click',     () => {
-            if (button2.textContent === correctAnswer) {
-                button2.style.background = '#04ac04'
-
-            } else if (button2.textContent === wrongAnswer1 || button2.textContent === wrongAnswer2){
-                button2.style.background = 'red'
-            }
-            //move on to next question
-
-        })
-        button3.addEventListener('click',     () => {
-            if (button3.textContent === correctAnswer) {
-                button3.style.background = '#04ac04'
-
-            } else if (button3.textContent === wrongAnswer1 || button3.textContent === wrongAnswer2){
-                button3.style.background = 'red'
-            }
-            //move on to next question
-
-        })
+        //calling function against each button so that any of them can be pressed
+        checkAnswer(button1)
+        checkAnswer(button2)
+        checkAnswer(button3)
 
 
     })
