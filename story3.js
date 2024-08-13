@@ -1,8 +1,8 @@
 fetch('./films.json')
     .then((response) => response.json())
     .then((json) => {
-        console.log(json)
         let  films = json.films
+
         function shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
@@ -16,17 +16,12 @@ fetch('./films.json')
         console.log(films)
 //Getting quote
         const currentQuote = films.pop()
-        console.log(currentQuote.quote)
-
         const quoteContainer = document.querySelector('.quoteContainer')
-
         const quoteElem = document.createElement('p')
         quoteElem.textContent = "Quote: " + currentQuote.quote
         quoteContainer.appendChild(quoteElem)
 
-
         //Getting titles
-
         //Creating two wrong answer variables and assigning them the first two titles in the films object.
         //Intention is to shuffle after each guess so these will hopefully not be the same each guess
         const wrongAnswer1 = films[0].title
@@ -38,7 +33,6 @@ fetch('./films.json')
         const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
         shuffleArray(answers)
 
-
         const titleContainer = document.querySelector('.titleContainer')
         const button1 = document.createElement('button')
         const button2 = document.createElement('button')
@@ -49,12 +43,9 @@ fetch('./films.json')
         button2.textContent = answers[1]
         button3.textContent = answers[2]
 
-        console.log(answers)
-
         titleContainer.appendChild(button1)
         titleContainer.appendChild(button2)
         titleContainer.appendChild(button3)
-
 
         //This function checks to see if button has been clicked, then runs if statement
         const checkAnswer = (button) => {
@@ -69,17 +60,14 @@ fetch('./films.json')
                     //trigger next question
                 }
             })
-
-
         }
 
         //calling function against each button so that any of them can be pressed
         checkAnswer(button1)
         checkAnswer(button2)
         checkAnswer(button3)
-
-
     })
+
 
 
 
