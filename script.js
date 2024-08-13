@@ -23,7 +23,6 @@ const playGame = (filmTitles, films) => {
             }
         })
     }
-
     //can we create a new function here to contain all the code below, for each extra round?
 //shuffling film object
 
@@ -32,7 +31,7 @@ const playGame = (filmTitles, films) => {
     const currentQuote = films.pop()
     const quoteContainer = document.querySelector('.quoteContainer')
     const quoteElem = document.createElement('p')
-    quoteElem.textContent = "Quote: " + currentQuote.quote
+    quoteElem.textContent = "\"" + currentQuote.quote + "\""
     quoteContainer.appendChild(quoteElem)
 
     //Getting titles
