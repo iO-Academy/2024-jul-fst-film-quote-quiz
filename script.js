@@ -20,7 +20,6 @@ const playGame = (filmTitles, films) => {
                 button.style.background = '#04ac04'
                 score++
                 scoreBoxElem.textContent = score
-                console.log(score)
                 if (score % 5 === 0) {
                     confetti({
                         particleCount: 100,
