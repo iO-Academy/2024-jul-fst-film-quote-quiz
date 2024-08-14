@@ -83,9 +83,8 @@ const playGame = (filmTitles, films) => {
 
     // hint
     hintButton.addEventListener('click', () => {
-        hintButton.textContent =  currentQuote.year
+        hintButton.textContent = currentQuote.year
     })
-
     return films
 }
 
@@ -143,12 +142,6 @@ playButton.addEventListener('click',countDownTimer)
 
 timerDisplay.textContent = countDownValue.toString()
 scoreSpan.textContent = score.toString()
-
-// Button Event Listeners
-homeButton.addEventListener('click', () => {
-    gameOverModal.close()
-    window.location.reload()
-})
 
 const resetGame = () => {
     score = 0
