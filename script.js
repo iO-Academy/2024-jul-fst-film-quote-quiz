@@ -8,19 +8,29 @@ function shuffleArray(array) {
     }
 }
 
+let score = 0
+const scoreBoxElem = document.querySelector('.scoreBox')
+
 const playGame = (filmTitles, films) => {
     playButton.remove()
     const checkAnswer = (button) => {
+
         button.addEventListener('click', () => {
             if (button.textContent === correctAnswer) {
                 button.style.background = '#04ac04'
-                //score++
+                score++
+                scoreBoxElem.textContent = score
+                if (score % 5 === 0) {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: {y: .6}
+                    })
+                }
                 //trigger next question
-
             } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
-                button.style.background = 'red'
+                button.style.background = 'red' }
                 //trigger next question
-            }
         })
     }
     //can we create a new function here to contain all the code below, for each extra round?
@@ -112,7 +122,6 @@ const scoreSpan = document.querySelector('.score')
 
 let countDownValue = 30
 let countDownInterval
-let score = 10 // (remove on merge)
 
 const countDownTimer = ()=>{countDownInterval=setInterval(countDown,1000)}
 
@@ -130,10 +139,10 @@ const countDown = () => {
     }
 }
 
-playButton.addEventListener('click',countDownTimer) //(remove/replace on merge with existing play button)
+playButton.addEventListener('click',countDownTimer)
 
 timerDisplay.textContent = countDownValue.toString()
-scoreSpan.textContent = score.toString() // Display current score - Hookup to existing score variable
+scoreSpan.textContent = score.toString()
 
 // Button Event Listeners
 homeButton.addEventListener('click', () => {

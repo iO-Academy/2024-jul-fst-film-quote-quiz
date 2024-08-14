@@ -124,6 +124,26 @@ header {
     cursor: pointer;
 }
 
+.scoreSection {
+    width: 100px;
+    height: 100px;
+}
+
+.timerDummy {
+    width: 100px;
+    height: 100px;
+
+}
+
+.scoreBox {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.scoreLabel {
+    text-align: center;
+}
+
 .gameScreen {
     display:flex;
     flex-direction: column;
@@ -196,7 +216,6 @@ button:hover {
     .quoteContainer p {
         font-size: 1.2rem;
     }
-
 }
 
 @font-face {
