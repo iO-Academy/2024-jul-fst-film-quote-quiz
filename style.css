@@ -132,19 +132,16 @@ header {
 .timerDummy {
     width: 100px;
     height: 100px;
+
 }
 .scoreBox {
-    /*width: 100px;*/
-    /*height: 100px;*/
     font-size: 2rem;
-    /*border: 1px solid black;*/
     text-align: center;
 }
 
 .scoreLabel {
     text-align: center;
 }
-
 
 .gameScreen {
     display:flex;
@@ -198,5 +195,4 @@ button {
     .quoteContainer p {
         font-size: 1.2rem;
     }
-
 }
