@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="script.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <header>
@@ -16,6 +17,7 @@
 </header>
 <main>
     <div class="topContainer">
+        <div class="timerDummy"> </div>
         <div class="gameButtons">
             <div class="instructionsButton">Instructions</div>
             <div class="modalContainer">
@@ -31,6 +33,10 @@
                 </div>
             </div>
             <div class="play">Play</div>
+        </div>
+        <div class="scoreSection">
+            <p class="scoreLabel">Score:</p>
+            <div class="scoreBox"></div>
         </div>
     </div>
     <section class="gameScreen">
