@@ -73,7 +73,7 @@ const playGame = (filmTitles, films) => {
 
     // hint
     hintButton.addEventListener('click', () => {
-        quoteElem.textContent =  "\"" + currentQuote.quote + "\"" + ' ~ ' + currentQuote.year
+        hintButton.textContent =  currentQuote.year
     })
 
     return films

@@ -166,6 +166,9 @@ button:hover {
     width: 8rem;
     background-color: #661D09;
     color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 10%;
+    filter: drop-shadow(8px 5px 10px #000000);
 }
 
 .hintContainer button:hover {
