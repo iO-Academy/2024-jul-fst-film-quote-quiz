@@ -116,7 +116,6 @@ const timerDisplay = document.querySelector(".timerDisplay")
 const timerProgress = document.querySelector(".timerProgress")
 const resetBtn = document.querySelector('.reset')
 const gameOverModal = document.querySelector('.gameOverModal')
-const homeButton = document.querySelector('.home')
 const scoreSpan = document.querySelector('.score')
 
 let countDownValue = 30
@@ -132,6 +131,7 @@ const countDown = () => {
     }
     else {
         clearInterval(countDownInterval)
+        scoreSpan.textContent = score.toString()
         gameOverModal.showModal()
         countDownValue = 30
         timerDisplay.textContent = countDownValue.toString()
@@ -141,7 +141,6 @@ const countDown = () => {
 playButton.addEventListener('click',countDownTimer)
 
 timerDisplay.textContent = countDownValue.toString()
-scoreSpan.textContent = score.toString()
 
 const resetGame = () => {
     score = 0
