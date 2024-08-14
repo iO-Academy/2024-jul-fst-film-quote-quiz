@@ -23,7 +23,8 @@ const countDown = () => {
         modal.showModal()
         countDownValue = 30
         timerDisplay.textContent = countDownValue.toString()
-    }}
+    }
+}
 
 playButton.addEventListener('click',countDownTimer) //(remove/replace on merge with existing play button)
 
@@ -33,7 +34,8 @@ scoreSpan.textContent = score.toString() // Display current score - Hookup to ex
 // Button Event Listeners
 homeButton.addEventListener('click', () => {
     modal.close()
-    window.location.reload()})
+    window.location.reload()
+})
 
 const resetGame = () => {
     score = 0
