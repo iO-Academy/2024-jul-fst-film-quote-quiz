@@ -28,13 +28,10 @@ const playGame = (filmTitles, films) => {
                     })
                 }
                 //trigger next question
-
             } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
                 button.style.background = 'red' }
                 //trigger next question
-        }
-
-        )
+        })
     }
     //can we create a new function here to contain all the code below, for each extra round?
 //shuffling film object
