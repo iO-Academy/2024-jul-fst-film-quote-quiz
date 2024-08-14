@@ -83,9 +83,8 @@ const playGame = (filmTitles, films) => {
 
     // hint
     hintButton.addEventListener('click', () => {
-        quoteElem.textContent =  "\"" + currentQuote.quote + "\"" + ' ~ ' + currentQuote.year
+        hintButton.textContent = currentQuote.year
     })
-
     return films
 }
 
@@ -108,8 +107,47 @@ const modal = () => {
     else {
         instructions.style.display = 'none';
     }
-
 }
 
 instructionsButton.addEventListener('click', modal)
 closeButton.addEventListener('click', modal)
+
+const timerDisplay = document.querySelector(".timerDisplay")
+const timerProgress = document.querySelector(".timerProgress")
+const resetBtn = document.querySelector('.reset')
+const gameOverModal = document.querySelector('.gameOverModal')
+const scoreSpan = document.querySelector('.score')
+
+let countDownValue = 30
+let countDownInterval
+
+const countDownTimer = ()=>{countDownInterval=setInterval(countDown,1000)}
+
+const countDown = () => {
+    if(countDownValue > 0){
+        countDownValue--
+        timerDisplay.textContent = countDownValue.toString()
+        timerProgress.value = countDownValue
+    }
+    else {
+        clearInterval(countDownInterval)
+        scoreSpan.textContent = score.toString()
+        gameOverModal.showModal()
+        countDownValue = 30
+        timerDisplay.textContent = countDownValue.toString()
+    }
+}
+
+playButton.addEventListener('click',countDownTimer)
+
+timerDisplay.textContent = countDownValue.toString()
+
+const resetGame = () => {
+    score = 0
+    countDownValue = 30
+    resetGameArray() // function to rest array - story 4
+    playGame()
+}
+
+resetBtn.addEventListener('click',resetGame)
+resetBtn.addEventListener('click',countDownTimer)
