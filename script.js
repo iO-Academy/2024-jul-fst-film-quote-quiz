@@ -15,16 +15,32 @@ const playGame = (filmTitles, films) => {
         button.addEventListener('click', () => {
             if (button.textContent === correctAnswer) {
                 button.style.background = '#04ac04'
-                //score++
-                //trigger next question
-
-            } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+            } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2 ) {
                 button.style.background = 'red'
-                //trigger next question
             }
+            // button.addEventListener('click', ()=> {
+            const interval = setInterval(() => {
+                quoteElem.remove()
+                button1.remove()
+                button2.remove()
+                button3.remove()
+                clearInterval(interval)
+                console.log(films)
+                if(films.length > 2) {
+                    return playGame(filmTitles, films)
+                } else {
+                    quoteElem.textContent = 'Game over!'
+                    quoteContainer.appendChild(quoteElem)
+                }
+               //
+            }, 300)
+
+
+
+            // })
         })
     }
-    //can we create a new function here to contain all the code below, for each extra round?
+//can we create a new function here to contain all the code below, for each extra round?
 //shuffling film object
 
     shuffleArray(films)
@@ -65,8 +81,13 @@ const playGame = (filmTitles, films) => {
     checkAnswer(button1)
     checkAnswer(button2)
     checkAnswer(button3)
-    return films
+    // return films
+
+
+
 }
+
+
 
 fetch('./films.json')
     .then((response) => response.json())
