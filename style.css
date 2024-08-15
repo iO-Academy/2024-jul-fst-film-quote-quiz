@@ -132,7 +132,6 @@ header {
 .timerDummy {
     width: 100px;
     height: 100px;
-
 }
 
 .scoreBox {
@@ -194,6 +193,10 @@ button:hover {
 
 .hintContainer button:hover {
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
 
 @media (max-width: 600px) {
@@ -303,6 +306,3 @@ button:hover {
     margin-left: 20px;
 }
 
-.hidden {
-    display: none;
-}
