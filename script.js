@@ -47,24 +47,19 @@ const checkAnswer = (button) => {
                     spread: 70,
                     origin: {y: .6}
                 })
-            }}
-        else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+            }
+        } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
             button.style.backgroundColor = 'red'
         }
         const interval = setInterval(() => {
             button.style.backgroundColor = '#efefef'
             clearInterval(interval)
-            if (films.length >= 3 || films.length < 2) {
+            if (films.length >= 3) {
                 playGame(filmTitles, films)
-                if(films.length < 2 ) {
-                    resetBtn.addEventListener('click', ()=>{playGame(filmTitles, films)})
-                }
 
-            }
-            else
-            {
+
+            } else {
                 endGame()
-                // resetBtn.addEventListener('click',resetGame)
 
             }
         }, 200)
@@ -75,61 +70,13 @@ checkAnswer(button1)
 checkAnswer(button2)
 checkAnswer(button3)
 
- // fetch('./films.json')
- //    .then((response) => response.json())
- //    .then((json) => {
- //        const filmTitles = json.films
- //        const films = json.films
- //        playButton.addEventListener('click', () => playGame(filmTitles, films))
- //        resetBtn.addEventListener('click', () => playGame(filmTitles, films))
- //
- //        const checkAnswer = (button) => {
- //            button.addEventListener('click', () => {
- //                if (button.textContent === correctAnswer) {
- //                    button.style.backgroundColor = '#04ac04'
- //                    score++
- //                    scoreBoxElem.textContent = score
- //
- //                    if (score % 5 === 0) {
- //                        confetti({
- //                            particleCount: 100,
- //                            spread: 70,
- //                            origin: {y: .6}
- //                        })
- //                    }}
- //                else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
- //                    button.style.backgroundColor = 'red'
- //                }
- //                const interval = setInterval(() => {
- //                    button.style.backgroundColor = '#efefef'
- //                    clearInterval(interval)
- //                    if (films.length >= 3 || films.length < 2) {
- //                        playGame(filmTitles, films)
- //                        if(films.length < 2 ) {
- //                        resetBtn.addEventListener('click', ()=>{playGame(filmTitles, films)})
- //                        }
- //
- //                    }
- //                        else
- //                        {
- //                            endGame()
- //                            // resetBtn.addEventListener('click',resetGame)
- //
- //                        }
- //                    }, 200)
- //            })
- //        }
- //        checkAnswer(button1)
- //        checkAnswer(button2)
- //        checkAnswer(button3)
- //    })
+
 let score = 0
 const scoreBoxElem = document.querySelector('.scoreBox')
 let correctAnswer
 let wrongAnswer1
 let wrongAnswer2
-// let films = {}
-// let filmTitles = {}
+
 const playGame = (filmTitles, films) => {
     console.log(films)
 
@@ -144,9 +91,16 @@ const playGame = (filmTitles, films) => {
     const currentQuote = films.pop()
     quoteElem.textContent = "\"" + currentQuote.quote + "\""
 
-wrongAnswer1 = filmTitles[0].title
-wrongAnswer2 = filmTitles[1].title
-correctAnswer = currentQuote.title
+    wrongAnswer1 = filmTitles[0].title
+    wrongAnswer2 = filmTitles[1].title
+    correctAnswer = currentQuote.title
+
+    if (correctAnswer === wrongAnswer1) {
+        wrongAnswer1 = filmTitles[2].title
+    } else if (correctAnswer === wrongAnswer2) {
+        wrongAnswer2 = filmTitles[2].title
+    }
+
 
     const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
     shuffleArray(answers)
@@ -165,7 +119,7 @@ correctAnswer = currentQuote.title
     })
 }
 
-const endGame = () =>{
+const endGame = () => {
     clearInterval(countDownInterval)
     scoreSpan.textContent = score.toString()
     gameOverModal.showModal()
@@ -176,8 +130,6 @@ const endGame = () =>{
 }
 
 
-
-
 const instructionsButton = document.querySelector('.instructionsButton')
 const instructions = document.querySelector('.modalContainer')
 const closeButton = document.querySelector('.closeButton')
@@ -185,8 +137,7 @@ const modal = () => {
     if (instructions.style.display === 'none') {
         instructions.style.display = 'flex';
         instructions.style.zIndex = '1';
-    }
-    else {
+    } else {
         instructions.style.display = 'none';
     }
 }
@@ -203,20 +154,21 @@ const scoreSpan = document.querySelector('.score')
 let countDownValue = 30
 let countDownInterval
 
-const countDownTimer = ()=>{countDownInterval=setInterval(countDown,1000)}
+const countDownTimer = () => {
+    countDownInterval = setInterval(countDown, 1000)
+}
 
 const countDown = () => {
-    if(countDownValue > 0){
+    if (countDownValue > 0) {
         countDownValue--
         timerDisplay.textContent = countDownValue.toString()
         timerProgress.value = countDownValue
-    }
-    else {
-    endGame()
+    } else {
+        endGame()
     }
 }
 
-playButton.addEventListener('click',countDownTimer)
+playButton.addEventListener('click', countDownTimer)
 
 timerDisplay.textContent = countDownValue.toString()
 
@@ -225,17 +177,10 @@ const resetGame = () => {
     countDownValue = 30
     scoreBoxElem.textContent = score
     setupGame()
-    playGame(filmTitles,films)
+    playGame(filmTitles, films)
 
-    // fetch('./films.json')
-    //     .then((response) => response.json())
-    //     .then((json) => {
-    //         const filmTitles = json.films
-    //         const films = json.films
-    //         playGame(filmTitles, films)
-    //     })
 
-        }
+}
 
-resetBtn.addEventListener('click',resetGame)
-resetBtn.addEventListener('click',countDownTimer)
+resetBtn.addEventListener('click', resetGame)
+resetBtn.addEventListener('click', countDownTimer)
