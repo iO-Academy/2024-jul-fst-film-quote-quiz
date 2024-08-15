@@ -18,9 +18,6 @@ const scoreSpan = document.querySelector('.score')
 let filmTitles = []
 let films = []
 let score = 0
-let correctAnswer
-let wrongAnswer1
-let wrongAnswer2
 let countDownValue = 30
 let countDownInterval
 
