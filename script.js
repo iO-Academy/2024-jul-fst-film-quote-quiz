@@ -1,5 +1,12 @@
 const playButton = document.querySelector('.play')
 const playMenu = document.querySelector('.gameButtons')
+const button1 = document.querySelector('.btn1')
+const button2 = document.querySelector('.btn2')
+const button3 = document.querySelector('.btn3')
+const hintButton = document.querySelector('.hintButton')
+const quoteElem = document.querySelector('.quote')
+const buttons = document.querySelector('.buttons')
+
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -8,99 +15,78 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
-fetch('./films.json')
+ fetch('./films.json')
     .then((response) => response.json())
     .then((json) => {
         const filmTitles = json.films
         const films = json.films
         playButton.addEventListener('click', () => playGame(filmTitles, films))
-    })
+        const checkAnswer = (button) => {
+            button.addEventListener('click', () => {
+                if (button.textContent === correctAnswer) {
+                    button.style.backgroundColor = '#04ac04'
+                    score++
+                    scoreBoxElem.textContent = score
 
+                    if (score % 5 === 0) {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: {y: .6}
+                        })
+                    }}
+                else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+                    button.style.backgroundColor = 'red'
+                }
+                const interval = setInterval(() => {
+                    button.style.backgroundColor = '#efefef'
+                    clearInterval(interval)
+                    if (films.length > 2) {
+                        return playGame(filmTitles, films)
+                    }
+                        else
+                        {
+                            endGame()
+                        }
+                    }, 200)
+            })
+        }
+        checkAnswer(button1)
+        checkAnswer(button2)
+        checkAnswer(button3)
+    })
 let score = 0
 const scoreBoxElem = document.querySelector('.scoreBox')
-
+let correctAnswer
+let wrongAnswer1
+let wrongAnswer2
 const playGame = (filmTitles, films) => {
+    console.log(films)
 
     playMenu.style.visibility = 'hidden'
-
-
+    quoteElem.classList.remove('hidden')
+    button1.classList.remove('hidden')
+    button2.classList.remove('hidden')
+    button3.classList.remove('hidden')
+    hintButton.classList.remove('hidden')
 
     shuffleArray(films)
     const currentQuote = films.pop()
-    const quoteContainer = document.querySelector('.quoteContainer')
-    const quoteElem = document.createElement('p')
     quoteElem.textContent = "\"" + currentQuote.quote + "\""
-    quoteContainer.appendChild(quoteElem)
 
-    const wrongAnswer1 = filmTitles[0].title
-    const wrongAnswer2 = filmTitles[1].title
-    const correctAnswer = currentQuote.title
-
-
-
+wrongAnswer1 = filmTitles[0].title
+wrongAnswer2 = filmTitles[1].title
+correctAnswer = currentQuote.title
 
     const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
     shuffleArray(answers)
 
-    const titleContainer = document.querySelector('.titleContainer')
     const hintContainer = document.querySelector('.hintContainer')
-
-    const button1 = document.createElement('button')
-    const button2 = document.createElement('button')
-    const button3 = document.createElement('button')
-    const hintButton = document.createElement('button')
 
     button1.textContent = answers[0]
     button2.textContent = answers[1]
     button3.textContent = answers[2]
     hintButton.textContent = 'Hint?'
-
-    titleContainer.appendChild(button1)
-    titleContainer.appendChild(button2)
-    titleContainer.appendChild(button3)
-
-
-    const checkAnswer = (button) => {
-        button.addEventListener('click', () => {
-            if (button.textContent === correctAnswer) {
-                button.style.background = '#04ac04'
-                score++
-                scoreBoxElem.textContent = score
-                button.disabled = true
-
-                if (score % 5 === 0) {
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: {y: .6}
-                    })
-                }}
-                else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
-                    button.style.background = 'red'
-                button.disabled = true
-                }
-                const interval = setInterval(() => {
-                    quoteElem.remove()
-                    button1.remove()
-                    button2.remove()
-                    button3.remove()
-                    hintButton.remove()
-                    clearInterval(interval)
-                    if (films.length > 2) {
-                        return playGame(filmTitles, films)
-                    } else {
-                        gameOverModal.showModal()
-                    }
-                }, 200)
-            })
-    }
-
-
-    hintContainer.appendChild(hintButton)
-
-    checkAnswer(button1)
-    checkAnswer(button2)
-    checkAnswer(button3)
 
     // hint
     hintButton.addEventListener('click', () => {
@@ -109,6 +95,20 @@ const playGame = (filmTitles, films) => {
     })
     return films
 }
+
+const endGame = () =>{
+    clearInterval(countDownInterval)
+    scoreSpan.textContent = score.toString()
+    gameOverModal.showModal()
+    countDownValue = 30
+    timerDisplay.textContent = countDownValue.toString()
+    resetBtn.addEventListener('click',resetGame)
+
+
+}
+
+
+
 
 const instructionsButton = document.querySelector('.instructionsButton')
 const instructions = document.querySelector('.modalContainer')
@@ -144,11 +144,7 @@ const countDown = () => {
         timerProgress.value = countDownValue
     }
     else {
-        clearInterval(countDownInterval)
-        scoreSpan.textContent = score.toString()
-        gameOverModal.showModal()
-        countDownValue = 30
-        timerDisplay.textContent = countDownValue.toString()
+    endGame()
     }
 }
 
@@ -160,8 +156,16 @@ const resetGame = () => {
     score = 0
     countDownValue = 30
     scoreBoxElem.textContent = score
-    playGame()
-}
+
+    fetch('./films.json')
+        .then((response) => response.json())
+        .then((json) => {
+            const filmTitles = json.films
+            const films = json.films
+            playGame(filmTitles, films)
+        })
+
+        }
 
 resetBtn.addEventListener('click',resetGame)
 resetBtn.addEventListener('click',countDownTimer)
