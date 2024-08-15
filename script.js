@@ -1,4 +1,3 @@
-
 const playButton = document.querySelector('#play')
 const playMenu = document.querySelector('#gameButtons')
 const button1 = document.querySelector('#btn1')
@@ -61,8 +60,8 @@ const uxEvents = (button) => {
                     spread: 70,
                     origin: {y: .6}
                 })
-            }}
-        else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+            }
+        } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
             button.classList.add('backgroundRed')
         }
         const interval = setInterval(() => {
@@ -80,12 +79,6 @@ const uxEvents = (button) => {
 }
 
 const roundGenerator = (filmTitles, films) => {
-    playMenu.classList.add('hidden')
-    quoteElem.classList.remove('hidden')
-    button1.classList.remove('hidden')
-    button2.classList.remove('hidden')
-    button3.classList.remove('hidden')
-    hintButton.classList.remove('hidden')
     shuffleArray(films)
     const currentQuote = films.pop()
     quoteElem.textContent = "\"" + currentQuote.quote + "\""
@@ -141,9 +134,16 @@ const resetGame = () => {
 }
 
 const playGame = () => {
-    setupGame().
-    then(() => roundGenerator(filmTitles,films))
-    countDownTimer()
+    setupGame().then(() => {
+        playMenu.classList.add('invisible')
+        quoteElem.classList.remove('hidden')
+        button1.classList.remove('hidden')
+        button2.classList.remove('hidden')
+        button3.classList.remove('hidden')
+        hintButton.classList.remove('hidden')
+        roundGenerator(filmTitles, films)
+        countDownTimer()
+    })
 }
 
 playButton.addEventListener('click', playGame)

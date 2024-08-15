@@ -204,7 +204,11 @@ button:hover {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden !important;
 }
 
 @media (max-width: 600px) {
