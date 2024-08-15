@@ -1,222 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
 @font-face {
     font-family: 'NeueMontrealBook';
     src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealItalic';
     src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealMedium';
     src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealSemiBoldItalic';
     src: url('fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'NeueMontrealThin';
     src: url('fonts/PPNeueMontreal-Thin.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'GoshaSansBold';
     src: url('fonts/PPGoshaSans-Bold.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'GoshaSansRegular';
     src: url('fonts/PPGoshaSans-Regular.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-body {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-header {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #661D09;
-    color: #FFF;
-}
-
-.topContainer {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
-.appTitle {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-.instructions p {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-.instructionsButton {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-.instructions .closeButton {
-    font-family: GoshaSansBold, sans-serif;
-    width: 5rem;
-    border: solid black 1px;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    padding: .5rem;
-}
-
-.play {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-.modalContainer {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-.instructions{
-    font-family: GoshaSansBold, sans-serif;
-    text-align: center;
-    background-color: black;
-    color: white;
-    width: 50%;
-    padding: 2rem;
-}
-
-.gameButtons {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background-color: #661D09;
-    color: #FFF;
-}
-
-.gameButtons:hover {
-    cursor: pointer;
-}
-
-.scoreSection {
-    width: 100px;
-    height: 100px;
-}
-
-.timerDummy {
-    width: 100px;
-    height: 100px;
-
-}
-
-.scoreBox {
-    font-size: 2rem;
-    text-align: center;
-}
-
-.scoreLabel {
-    text-align: center;
-}
-
-.gameScreen {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top:3rem;
-}
-
-.quoteContainer {
-    margin: 2rem 3rem 4rem;
-    height: 4rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.titleContainer {
-    display:flex;
-    flex-direction: row;
-    gap: 4rem;
-}
-
-.quoteContainer p {
-    font-family: 'NeueMontrealItalic', sans-serif;
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-.titleContainer button {
-    padding: 1rem;
-    border-radius: 10%;
-    filter: drop-shadow(8px 5px 10px #000000);
-    width: 13rem;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-.hintContainer button {
-    margin-top: 4rem;
-    width: 8rem;
-    background-color: #661D09;
-    color: #FFFFFF;
-    padding: 1rem;
-    border-radius: 10%;
-    filter: drop-shadow(8px 5px 10px #000000);
-}
-
-.hintContainer button:hover {
-    cursor: pointer;
-}
-
-@media (max-width: 600px) {
-    .instructions p {
-        font-size: 0.7rem;
-    }
-
-    .instructions {
-        width: 68.5%;
-    }
-
-    .gameScreen {
-        flex-direction: column;
-        padding-top: 1rem;
-    }
-
-    .titleContainer {
-        flex-direction: column;
-    }
-
-    .quoteContainer p {
-        font-size: 1.2rem;
-    }
 }
 
 @font-face {
@@ -226,16 +44,224 @@ button:hover {
     font-style: normal;
 }
 
+body {
+    font-family: GoshaSansBold, sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+.backgroundImageContainer {
+    background-image: url("https://nofilmschool.com/media-library/cinema-camera.jpg?id=34059597&width=1245&height=700&quality=90&coordinates=0%2C19%2C0%2C19");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.backgroundImageFilter {
+    background-color: rgba(93, 111, 230, 0.9);
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: rgba(255, 255, 255, 0.91);
+}
+
+.appTitle {
+    font-family: GoshaSansBold, sans-serif;
+    border: rgba(255, 255, 255, 0.91) solid 1px;
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+    padding: 0.5rem;
+    color: rgba(255, 255, 255, 0.91);
+    font-size: 6rem;
+}
+
+.topContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    color: rgba(255, 255, 255, 0.91);
+    font-size: 1.3rem;
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+}
+
+.gameButtons {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    color: #FFF;
+    border: rgba(255, 255, 255, 0.91) 1px solid;
+    filter: drop-shadow(4px 5px 7px rgba(62, 62, 62, 0.71));
+}
+
+.gameButtons:hover {
+    cursor: pointer;
+}
+
+.gameButtons div {
+    color: rgba(255, 255, 255, 0.91);
+    font-size: 2rem;
+    filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.71));
+}
+
+.instructionsButton {
+    font-family: GoshaSansBold, sans-serif;
+    font-size: 1.3rem;
+}
+
+.modalContainer {
+    top: 2.7rem;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: auto;
+    padding: 3rem;
+}
+
+.instructions {
+    font-family: GoshaSansBold, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.instructions p {
+    font-family: NeueMontrealBook, sans-serif;
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.instructions p span {
+    font-family: NeueMontrealSemiBoldItalic, sans-serif;
+    font-size: 1.3rem;
+}
+
+.instructions .closeButton {
+    font-family: GoshaSansBold, sans-serif;
+    width: 5rem;
+    border: solid black 1px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: .5rem;
+    font-size: 1.3rem;
+}
+
+.play {
+    font-family: GoshaSansBold, sans-serif;
+}
+
+.playButton {
+    margin-left: 20px;
+}
+
+.scoreSection {
+    width: 100px;
+    height: 100px;
+    z-index: 0;
+}
+
+.scoreLabel {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.91);
+    font-size: 1.3rem;
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+}
+
+.scoreBox {
+    font-size: 2rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.91);
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+}
+
+.gameScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: rgba(255, 255, 255, 0.91);
+    height: fit-content;
+}
+
+.quoteContainer {
+    margin: 2rem 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    color: rgba(255, 255, 255, 0.91);
+}
+
+.quoteContainer p {
+    font-family: 'NeueMontrealItalic', sans-serif;
+    text-align: center;
+    font-size: 2.3rem;
+    filter: drop-shadow(8px 8px 8px rgb(0, 0, 0));
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+.titleContainer button {
+    padding: 1rem;
+    border-radius: 5px;
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+    width: 13rem;
+    background-color: rgba(255, 255, 255, 0.93);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.9);
+}
+
+.hintContainer button {
+    margin-top: 4rem;
+    width: 8rem;
+    background-color: rgba(255, 143, 33, 0.7);
+    color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 5px;
+    filter: drop-shadow(4px 5px 7px rgba(0, 0, 0, 0.71));
+}
+
+.hintContainer button:hover {
+    cursor: pointer;
+}
+
 .gameOverModal::backdrop {
     backdrop-filter: blur(50px);
     opacity: 0.75;
 }
 
-.gameOverModal{
+.gameOverModal {
     padding: unset;
 }
 
-.modalStyle{
+.modalStyle {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -246,7 +272,7 @@ button:hover {
     background: radial-gradient(circle at center, grey, black);
 }
 
-.modalContents{
+.modalContents {
     font-family: 'DancingScript', sans-serif;
     background-color: rgba(195, 195, 195, 0.42);
     padding: 20px;
@@ -264,17 +290,7 @@ button:hover {
 
 .modalContents h2 {
     font-size: 4rem;
-    margin: 0
-}
-
-.score {
-    font-size: 2.5rem;
-}
-
-.score_intro {
-    font-size: 2.5rem;
-    height: 2rem;
-    margin: 0 0 2rem 0;
+    margin: 0;
 }
 
 .modalContents button {
@@ -288,17 +304,97 @@ button:hover {
     cursor: pointer;
 }
 
-.timer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+.score {
+    font-size: 2.5rem;
 }
 
-.timerDisplay {
-    margin-left: 30px;
+.score_intro {
+    font-size: 2.5rem;
+    height: 2rem;
+    margin: 0 0 2rem 0;
 }
 
-.playButton{
-    margin-left: 20px;
+@media (max-width: 600px) {
+
+    .titleContainer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .appTitle {
+        font-size: 2rem;
+    }
+
+    .gameButtons {
+        height: 50px;
+        width: 150px;
+        justify-content: space-between;
+        padding: 0.5rem;
+    }
+
+    .gameButtons div {
+        font-size: 0.8rem;
+    }
+
+    .timerProgress {
+        width: 45px;
+    }
+
+    .timerDisplay {
+        font-size: 0.8rem;
+    }
+
+    .scoreLabel {
+        font-size: 0.8rem;
+    }
+
+    .timer {
+        width: 50px;
+        height: 50px;
+    }
+
+    .scoreSection {
+        width: 50px;
+        height: 50px;
+    }
+
+    .modalContainer {
+        width: 300px;
+        left: -5.5rem;
+        top: 10rem;
+    }
+
+    .instructions p {
+        font-size: 0.9rem;
+    }
+
+    .instructions p span {
+        font-size: 0.9rem;
+    }
+
+    .instructions .closeButton {
+        font-size: 0.9rem;
+    }
+
+    .gameScreen {
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    .quoteContainer {
+        margin: 1rem 3rem 1rem;
+    }
+
+    .quoteContainer p {
+        font-size: 1.2rem;
+    }
+
+    .hintContainer button {
+        margin-top: 1rem;
+    }
+
+    .modalContents h2 {
+        font-size: 2.5rem;
+    }
+
 }
