@@ -156,6 +156,11 @@ button {
     width: 13rem;
 }
 
+.hidden {
+    display: none;
+}
+
+
 @media (max-width: 600px) {
     .instructions p {
         font-size: 0.7rem;
