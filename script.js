@@ -1,4 +1,5 @@
-const playButton = document.querySelector('#play')
+const playButton = document.querySelector('#regularMode')
+const hardButton = document.querySelector('#hardMode')
 const playMenu = document.querySelector('#gameButtons')
 const button1 = document.querySelector('#btn1')
 const button2 = document.querySelector('#btn2')
@@ -19,6 +20,8 @@ let films = []
 let score = 0
 let countDownValue = 30
 let countDownInterval
+let hardModeCounter = 5
+let hardModeInterval
 
 const fetchFilms = async () => {
     const response = await fetch('./films.json')
@@ -70,6 +73,7 @@ const uxEvents = (button) => {
             clearInterval(interval)
             if (films.length >= 3) {
                 roundGenerator(filmTitles, films)
+                hardModeCounter = 5
             } else {
                 endGame()
             }
@@ -105,6 +109,7 @@ const roundGenerator = (filmTitles, films) => {
 
 const endGame = () => {
     clearInterval(countDownInterval)
+    clearInterval(hardModeInterval)
     scoreSpan.textContent = score.toString()
     gameOverModal.showModal()
     countDownValue = 30
@@ -146,6 +151,40 @@ const playGame = () => {
     })
 }
 
+const hardGame = () => {
+    setupGame().then(() => {
+        playMenu.classList.add('invisible')
+        quoteElem.classList.remove('hidden')
+        button1.classList.remove('hidden')
+        button2.classList.remove('hidden')
+        button3.classList.remove('hidden')
+        hintButton.classList.remove('hidden')
+        hardRound()
+        countDownTimer()
+        hardModeTimer()
+    })
+}
+
+const hardRound = () => {
+    hintButton.classList.add('hidden')
+    shuffleArray(filmTitles)
+    roundGenerator(filmTitles, films)
+}
+
+const hardModeTimer = () => {
+    hardModeInterval = setInterval(hardCountdown, 1000)
+}
+
+const hardCountdown = () => {
+    if (hardModeCounter > 0) {
+        hardModeCounter--
+    } else {
+       hardModeCounter = 5
+        hardRound()
+    }
+}
+
+hardButton.addEventListener('click', hardGame)
 playButton.addEventListener('click', playGame)
 instructionsButton.addEventListener('click', openModal)
 closeButton.addEventListener('click', closeModal)
