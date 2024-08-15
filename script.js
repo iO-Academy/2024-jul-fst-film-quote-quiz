@@ -23,8 +23,6 @@ const playGame = (filmTitles, films) => {
 
     playMenu.style.visibility = 'hidden'
 
-
-
     shuffleArray(films)
     const currentQuote = films.pop()
     const quoteContainer = document.querySelector('.quoteContainer')
@@ -35,9 +33,6 @@ const playGame = (filmTitles, films) => {
     const wrongAnswer1 = filmTitles[0].title
     const wrongAnswer2 = filmTitles[1].title
     const correctAnswer = currentQuote.title
-
-
-
 
     const answers = [wrongAnswer1, wrongAnswer2, correctAnswer]
     shuffleArray(answers)
@@ -89,7 +84,7 @@ const playGame = (filmTitles, films) => {
                     if (films.length > 2) {
                         return playGame(filmTitles, films)
                     } else {
-                        gameOverModal.showModal()
+                        endGame()
                     }
                 }, 200)
             })
@@ -137,6 +132,14 @@ let countDownInterval
 
 const countDownTimer = ()=>{countDownInterval=setInterval(countDown,1000)}
 
+const endGame = () =>{
+    clearInterval(countDownInterval)
+    scoreSpan.textContent = score.toString()
+    gameOverModal.showModal()
+    countDownValue = 30
+    timerDisplay.textContent = countDownValue.toString()
+}
+
 const countDown = () => {
     if(countDownValue > 0){
         countDownValue--
@@ -144,11 +147,7 @@ const countDown = () => {
         timerProgress.value = countDownValue
     }
     else {
-        clearInterval(countDownInterval)
-        scoreSpan.textContent = score.toString()
-        gameOverModal.showModal()
-        countDownValue = 30
-        timerDisplay.textContent = countDownValue.toString()
+       endGame()
     }
 }
 
