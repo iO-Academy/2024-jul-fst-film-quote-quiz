@@ -135,6 +135,7 @@ const countDown = () => {
 const resetGame = () => {
     score = 0
     countDownValue = 30
+    timerProgress.value = countDownValue
     scoreBoxElem.textContent = score
     playGame()
 }
