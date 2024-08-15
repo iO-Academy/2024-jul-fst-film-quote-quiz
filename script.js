@@ -1,20 +1,20 @@
 
-const playButton = document.querySelector('.play')
-const playMenu = document.querySelector('.gameButtons')
-const button1 = document.querySelector('.btn1')
-const button2 = document.querySelector('.btn2')
-const button3 = document.querySelector('.btn3')
-const hintButton = document.querySelector('.hintButton')
-const scoreBoxElem = document.querySelector('.scoreBox')
-const quoteElem = document.querySelector('.quote')
-const instructionsButton = document.querySelector('.instructionsButton')
+const playButton = document.querySelector('#play')
+const playMenu = document.querySelector('#gameButtons')
+const button1 = document.querySelector('#btn1')
+const button2 = document.querySelector('#btn2')
+const button3 = document.querySelector('#btn3')
+const hintButton = document.querySelector('#hintButton')
+const scoreBoxElem = document.querySelector('#scoreBox')
+const quoteElem = document.querySelector('#quote')
+const instructionsButton = document.querySelector('#instructionsButton')
 const instructions = document.querySelector('.modalContainer')
-const closeButton = document.querySelector('.closeButton')
-const timerDisplay = document.querySelector(".timerDisplay")
-const timerProgress = document.querySelector(".timerProgress")
-const resetBtn = document.querySelector('.reset')
-const gameOverModal = document.querySelector('.gameOverModal')
-const scoreSpan = document.querySelector('.score')
+const closeButton = document.querySelector('#closeButton')
+const timerDisplay = document.querySelector("#timerDisplay")
+const timerProgress = document.querySelector("#timerProgress")
+const resetBtn = document.querySelector('#reset')
+const gameOverModal = document.querySelector('#gameOverModal')
+const scoreSpan = document.querySelector('#score')
 let filmTitles = []
 let films = []
 let score = 0
@@ -30,16 +30,14 @@ const fetchFilms = async () => {
 const setupGame = async () => {
     filmTitles = await fetchFilms()
     films = await fetchFilms()
-    playButton.addEventListener('click', () => playGame(filmTitles, films))
 }
 
-const modal = () => {
-    if (instructions.style.display === 'none') {
-        instructions.style.display = 'flex';
-        instructions.style.zIndex = '1';
-    } else {
-        instructions.style.display = 'none';
-    }
+const openModal = () => {
+    instructions.classList.add('showModal')
+}
+
+const closeModal = () => {
+    instructions.classList.remove('showModal')
 }
 
 function shuffleArray(array) {
@@ -51,13 +49,12 @@ function shuffleArray(array) {
     }
 }
 
-const checkAnswer = (button) => {
+const uxEvents = (button) => {
     button.addEventListener('click', () => {
         if (button.textContent === correctAnswer) {
-            button.style.backgroundColor = '#04ac04'
+            button.classList.add('backgroundGreen')
             score++
             scoreBoxElem.textContent = score
-
             if (score % 5 === 0) {
                 confetti({
                     particleCount: 100,
@@ -66,14 +63,14 @@ const checkAnswer = (button) => {
                 })
             }}
         else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
-            button.style.backgroundColor = 'red'
+            button.classList.add('backgroundRed')
         }
-
         const interval = setInterval(() => {
-            button.style.backgroundColor = '#efefef'
+            button.classList.remove('backgroundGreen')
+            button.classList.remove('backgroundRed')
             clearInterval(interval)
             if (films.length >= 3) {
-                playGame(filmTitles, films)
+                roundGenerator(filmTitles, films)
             } else {
                 endGame()
             }
@@ -82,8 +79,8 @@ const checkAnswer = (button) => {
     })
 }
 
-const playGame = (filmTitles, films) => {
-    playMenu.style.visibility = 'hidden'
+const roundGenerator = (filmTitles, films) => {
+    playMenu.classList.add('hidden')
     quoteElem.classList.remove('hidden')
     button1.classList.remove('hidden')
     button2.classList.remove('hidden')
@@ -139,26 +136,24 @@ const resetGame = () => {
     score = 0
     countDownValue = 30
     scoreBoxElem.textContent = score
-    setupGame()
-    playGame(filmTitles, films)
+    playGame()
 }
 
-instructionsButton.addEventListener('click', modal)
-closeButton.addEventListener('click', modal)
-playButton.addEventListener('click', countDownTimer)
+const playGame = () => {
+    setupGame().
+    then(() => roundGenerator(filmTitles,films))
+    countDownTimer()
+}
+
+playButton.addEventListener('click', playGame)
+instructionsButton.addEventListener('click', openModal)
+closeButton.addEventListener('click', closeModal)
 timerDisplay.textContent = countDownValue.toString()
 resetBtn.addEventListener('click', resetGame)
-resetBtn.addEventListener('click', countDownTimer)
 
-setupGame()
-checkAnswer(button1)
-checkAnswer(button2)
-checkAnswer(button3)
-
-
-
-
-
+uxEvents(button1)
+uxEvents(button2)
+uxEvents(button3)
 
 
 

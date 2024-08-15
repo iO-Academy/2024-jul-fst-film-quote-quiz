@@ -73,11 +73,11 @@ header {
     font-family: GoshaSansBold, sans-serif;
 }
 
-.instructionsButton {
+#instructionsButton {
     font-family: GoshaSansBold, sans-serif;
 }
 
-.instructions .closeButton {
+#closeButton {
     font-family: GoshaSansBold, sans-serif;
     width: 5rem;
     border: solid black 1px;
@@ -86,7 +86,7 @@ header {
     padding: .5rem;
 }
 
-.play {
+#play {
     font-family: GoshaSansBold, sans-serif;
 }
 
@@ -101,6 +101,19 @@ header {
     align-items: center;
 }
 
+.showModal {
+    display: flex;
+    z-index: 1;
+}
+
+.backgroundGreen {
+    background-color: #04ac04
+}
+
+.backgroundRed {
+    background-color: red;
+}
+
 .instructions{
     font-family: GoshaSansBold, sans-serif;
     text-align: center;
@@ -110,7 +123,7 @@ header {
     padding: 2rem;
 }
 
-.gameButtons {
+#gameButtons {
     width: 60%;
     display: flex;
     justify-content: space-between;
@@ -120,7 +133,7 @@ header {
     color: #FFF;
 }
 
-.gameButtons:hover {
+#gameButtons:hover {
     cursor: pointer;
 }
 
@@ -129,12 +142,7 @@ header {
     height: 100px;
 }
 
-.timerDummy {
-    width: 100px;
-    height: 100px;
-}
-
-.scoreBox {
+#scoreBox {
     font-size: 2rem;
     text-align: center;
 }
@@ -229,12 +237,12 @@ button:hover {
     font-style: normal;
 }
 
-.gameOverModal::backdrop {
+#gameOverModal::backdrop {
     backdrop-filter: blur(50px);
     opacity: 0.75;
 }
 
-.gameOverModal{
+#gameOverModal{
     padding: unset;
 }
 
@@ -270,7 +278,7 @@ button:hover {
     margin: 0
 }
 
-.score {
+#score {
     font-size: 2.5rem;
 }
 
@@ -298,11 +306,11 @@ button:hover {
     justify-content: center;
 }
 
-.timerDisplay {
+#timerDisplay {
     margin-left: 30px;
 }
 
-.playButton{
+#playButton{
     margin-left: 20px;
 }
 
