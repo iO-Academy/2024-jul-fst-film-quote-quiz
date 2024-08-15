@@ -15,51 +15,121 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
- fetch('./films.json')
-    .then((response) => response.json())
-    .then((json) => {
-        const filmTitles = json.films
-        const films = json.films
-        playButton.addEventListener('click', () => playGame(filmTitles, films))
-        const checkAnswer = (button) => {
-            button.addEventListener('click', () => {
-                if (button.textContent === correctAnswer) {
-                    button.style.backgroundColor = '#04ac04'
-                    score++
-                    scoreBoxElem.textContent = score
 
-                    if (score % 5 === 0) {
-                        confetti({
-                            particleCount: 100,
-                            spread: 70,
-                            origin: {y: .6}
-                        })
-                    }}
-                else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
-                    button.style.backgroundColor = 'red'
-                }
-                const interval = setInterval(() => {
-                    button.style.backgroundColor = '#efefef'
-                    clearInterval(interval)
-                    if (films.length > 2) {
-                        return playGame(filmTitles, films)
-                    }
-                        else
-                        {
-                            endGame()
-                        }
-                    }, 200)
-            })
+const fetchFilms = async () => {
+    const response = await fetch('./films.json')
+    const data = await response.json()
+    return data.films
+}
+
+
+let filmTitles = []
+let films = []
+
+const setupGame = async () => {
+    filmTitles = await fetchFilms()
+    films = await fetchFilms()
+    playButton.addEventListener('click', () => playGame(filmTitles, films))
+}
+
+setupGame()
+
+const checkAnswer = (button) => {
+    button.addEventListener('click', () => {
+        if (button.textContent === correctAnswer) {
+            button.style.backgroundColor = '#04ac04'
+            score++
+            scoreBoxElem.textContent = score
+
+            if (score % 5 === 0) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: {y: .6}
+                })
+            }}
+        else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+            button.style.backgroundColor = 'red'
         }
-        checkAnswer(button1)
-        checkAnswer(button2)
-        checkAnswer(button3)
+        const interval = setInterval(() => {
+            button.style.backgroundColor = '#efefef'
+            clearInterval(interval)
+            if (films.length >= 3 || films.length < 2) {
+                playGame(filmTitles, films)
+                if(films.length < 2 ) {
+                    resetBtn.addEventListener('click', ()=>{playGame(filmTitles, films)})
+                }
+
+            }
+            else
+            {
+                endGame()
+                // resetBtn.addEventListener('click',resetGame)
+
+            }
+        }, 200)
+        shuffleArray(filmTitles)
     })
+}
+checkAnswer(button1)
+checkAnswer(button2)
+checkAnswer(button3)
+
+ // fetch('./films.json')
+ //    .then((response) => response.json())
+ //    .then((json) => {
+ //        const filmTitles = json.films
+ //        const films = json.films
+ //        playButton.addEventListener('click', () => playGame(filmTitles, films))
+ //        resetBtn.addEventListener('click', () => playGame(filmTitles, films))
+ //
+ //        const checkAnswer = (button) => {
+ //            button.addEventListener('click', () => {
+ //                if (button.textContent === correctAnswer) {
+ //                    button.style.backgroundColor = '#04ac04'
+ //                    score++
+ //                    scoreBoxElem.textContent = score
+ //
+ //                    if (score % 5 === 0) {
+ //                        confetti({
+ //                            particleCount: 100,
+ //                            spread: 70,
+ //                            origin: {y: .6}
+ //                        })
+ //                    }}
+ //                else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+ //                    button.style.backgroundColor = 'red'
+ //                }
+ //                const interval = setInterval(() => {
+ //                    button.style.backgroundColor = '#efefef'
+ //                    clearInterval(interval)
+ //                    if (films.length >= 3 || films.length < 2) {
+ //                        playGame(filmTitles, films)
+ //                        if(films.length < 2 ) {
+ //                        resetBtn.addEventListener('click', ()=>{playGame(filmTitles, films)})
+ //                        }
+ //
+ //                    }
+ //                        else
+ //                        {
+ //                            endGame()
+ //                            // resetBtn.addEventListener('click',resetGame)
+ //
+ //                        }
+ //                    }, 200)
+ //            })
+ //        }
+ //        checkAnswer(button1)
+ //        checkAnswer(button2)
+ //        checkAnswer(button3)
+ //    })
 let score = 0
 const scoreBoxElem = document.querySelector('.scoreBox')
 let correctAnswer
 let wrongAnswer1
 let wrongAnswer2
+// let films = {}
+// let filmTitles = {}
 const playGame = (filmTitles, films) => {
     console.log(films)
 
@@ -93,7 +163,6 @@ correctAnswer = currentQuote.title
         hintButton.textContent = currentQuote.year
         hintButton.disabled = true
     })
-    return films
 }
 
 const endGame = () =>{
@@ -102,7 +171,6 @@ const endGame = () =>{
     gameOverModal.showModal()
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
-    resetBtn.addEventListener('click',resetGame)
 
 
 }
@@ -156,14 +224,16 @@ const resetGame = () => {
     score = 0
     countDownValue = 30
     scoreBoxElem.textContent = score
+    setupGame()
+    playGame(filmTitles,films)
 
-    fetch('./films.json')
-        .then((response) => response.json())
-        .then((json) => {
-            const filmTitles = json.films
-            const films = json.films
-            playGame(filmTitles, films)
-        })
+    // fetch('./films.json')
+    //     .then((response) => response.json())
+    //     .then((json) => {
+    //         const filmTitles = json.films
+    //         const films = json.films
+    //         playGame(filmTitles, films)
+    //     })
 
         }
 
