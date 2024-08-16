@@ -121,7 +121,6 @@ const endGame = () => {
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
     table.classList.add('hide_table')
-    addPlayerScore()
     leaderboardFunction()
 }
 
@@ -164,10 +163,10 @@ const addScoreButton = document.querySelector('.addScore')
 const leaderboardButton = document.querySelector('.leaderboard')
 const table = document.querySelector('table')
 
-addPlayerScore = () => {
+const leaderboardFunction = () => {
     addScoreButton.addEventListener('click', () => {
         const player = {
-            game: 'MovieQuoteGame',
+            game: 'MovieQuoteFinal',
             name: nameInput.value,
             score: score
         }
@@ -185,23 +184,18 @@ addPlayerScore = () => {
             console.log(data)
         })
     })
-}
 
-addPlayerScore()
-
-const leaderboardFunction = () => {
- m
     leaderboardButton.addEventListener('click', () => {
-        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteGame').then((response) => {
+        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteFinal').then((response) => {
             console.log(response)
             return response.json()
         }).then((leaderBoardObject) => {
-                const listNamesElem = document.querySelector('.names')
-                const listScoresElem = document.querySelector('.scores')
-                listNamesElem.textContent = ''
-                listScoresElem.textContent = ''
-                table.classList.remove('hide_table')
-                leaderBoardObject.data.slice(0,5).forEach((player) => {
+            const listNamesElem = document.querySelector('.names')
+            const listScoresElem = document.querySelector('.scores')
+            listNamesElem.textContent = ''
+            listScoresElem.textContent = ''
+            table.classList.remove('hide_table')
+            leaderBoardObject.data.slice(0, 5).forEach((player) => {
                 const nameElem = document.createElement('p')
                 const scoreElem = document.createElement('p')
                 nameElem.textContent = player.name
@@ -210,8 +204,9 @@ const leaderboardFunction = () => {
                 listScoresElem.appendChild(scoreElem)
             })
         })
-    },{once: true})
+    }, {once: true})
 }
+
 
 
 
