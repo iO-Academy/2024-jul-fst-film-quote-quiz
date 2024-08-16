@@ -121,6 +121,7 @@ const endGame = () => {
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
     table.classList.add('hide_table')
+    addPlayerScore()
     leaderboardFunction()
 }
 
@@ -163,7 +164,7 @@ const addScoreButton = document.querySelector('.addScore')
 const leaderboardButton = document.querySelector('.leaderboard')
 const table = document.querySelector('table')
 
-const leaderboardFunction = () => {
+addPlayerScore = () => {
     addScoreButton.addEventListener('click', () => {
         const player = {
             game: 'MovieQuoteGame',
@@ -184,7 +185,12 @@ const leaderboardFunction = () => {
             console.log(data)
         })
     })
+}
 
+addPlayerScore()
+
+const leaderboardFunction = () => {
+ m
     leaderboardButton.addEventListener('click', () => {
         fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteGame').then((response) => {
             console.log(response)
@@ -195,7 +201,7 @@ const leaderboardFunction = () => {
                 listNamesElem.textContent = ''
                 listScoresElem.textContent = ''
                 table.classList.remove('hide_table')
-                 leaderBoardObject.data.slice(0,5).forEach((player) => {
+                leaderBoardObject.data.slice(0,5).forEach((player) => {
                 const nameElem = document.createElement('p')
                 const scoreElem = document.createElement('p')
                 nameElem.textContent = player.name
@@ -206,8 +212,6 @@ const leaderboardFunction = () => {
         })
     },{once: true})
 }
-
-
 
 
 
