@@ -21,6 +21,7 @@ let score = 0
 let countDownValue = 30
 let countDownInterval
 
+
 const fetchFilms = async () => {
     const response = await fetch('./films.json')
     const data = await response.json()
@@ -119,6 +120,8 @@ const endGame = () => {
     gameOverModal.showModal()
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
+    table.classList.add('hide_table')
+    leaderboardFunction()
 }
 
 const countDownTimer = () => {
@@ -154,6 +157,57 @@ setupGame()
 checkAnswer(button1)
 checkAnswer(button2)
 checkAnswer(button3)
+
+const nameInput = document.querySelector('.name')
+const addScoreButton = document.querySelector('.addScore')
+const leaderboardButton = document.querySelector('.leaderboard')
+const table = document.querySelector('table')
+
+const leaderboardFunction = () => {
+    addScoreButton.addEventListener('click', () => {
+        const player = {
+            game: 'MovieQuoteGame',
+            name: nameInput.value,
+            score: score
+        }
+
+        fetch('https://leaderboard.dev.io-academy.uk/score', {
+            method: 'POST',
+            body: JSON.stringify(player),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            console.log(response)
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+        })
+    })
+
+    leaderboardButton.addEventListener('click', () => {
+        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteGame').then((response) => {
+            console.log(response)
+            return response.json()
+        }).then((leaderBoardObject) => {
+                const listNamesElem = document.querySelector('.names')
+                const listScoresElem = document.querySelector('.scores')
+                listNamesElem.textContent = ''
+                listScoresElem.textContent = ''
+                table.classList.remove('hide_table')
+                 leaderBoardObject.data.slice(0,5).forEach((player) => {
+                const nameElem = document.createElement('p')
+                const scoreElem = document.createElement('p')
+                nameElem.textContent = player.name
+                scoreElem.textContent = player.score
+                listNamesElem.appendChild(nameElem)
+                listScoresElem.appendChild(scoreElem)
+            })
+        })
+    },{once: true})
+}
+
+
 
 
 
