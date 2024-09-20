@@ -164,13 +164,13 @@ const leaderboardButton = document.querySelector('.leaderboard')
 const table = document.querySelector('table')
 
 const leaderboardFunction = () => {
+
     addScoreButton.addEventListener('click', () => {
         const player = {
-            game: 'MovieQuoteFinal',
+            game: 'MovieQuoteSprint',
             name: nameInput.value,
             score: score
         }
-
         fetch('https://leaderboard.dev.io-academy.uk/score', {
             method: 'POST',
             body: JSON.stringify(player),
@@ -186,7 +186,7 @@ const leaderboardFunction = () => {
     })
 
     leaderboardButton.addEventListener('click', () => {
-        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteFinal').then((response) => {
+        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteSprint').then((response) => {
             console.log(response)
             return response.json()
         }).then((leaderBoardObject) => {
@@ -204,7 +204,7 @@ const leaderboardFunction = () => {
                 listScoresElem.appendChild(scoreElem)
             })
         })
-    }, {once: true})
+    }
 }
 
 

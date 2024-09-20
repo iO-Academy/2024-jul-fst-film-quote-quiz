@@ -199,10 +199,6 @@ button:hover {
     display: none;
 }
 
-.hide_table {
-    display: none;
-}
-
 @media (max-width: 600px) {
     .instructions p {
         font-size: 0.7rem;
