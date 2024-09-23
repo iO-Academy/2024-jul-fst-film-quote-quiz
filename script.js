@@ -15,12 +15,17 @@ const timerProgress = document.querySelector(".timerProgress")
 const resetBtn = document.querySelector('.reset')
 const gameOverModal = document.querySelector('.gameOverModal')
 const scoreSpan = document.querySelector('.score')
+const gameButtons = document.querySelector('.gameButtons')
+const gameScreen = document.querySelector('.gameScreen')
+const scoreTimer = document.querySelector('.scoreTimer')
+const topContainer = document.querySelector('.topContainer')
+const title = document.querySelector('.appTitle')
+
 let filmTitles = []
 let films = []
 let score = 0
 let countDownValue = 30
 let countDownInterval
-
 
 const fetchFilms = async () => {
     const response = await fetch('./films.json')
@@ -58,18 +63,10 @@ const checkAnswer = (button) => {
             button.style.backgroundColor = '#04ac04'
             score++
             scoreBoxElem.textContent = score
-
-            if (score % 5 === 0) {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: {y: .6}
-                })
-            }}
+        }
         else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
             button.style.backgroundColor = 'red'
         }
-
         const interval = setInterval(() => {
             button.style.backgroundColor = '#efefef'
             clearInterval(interval)
@@ -84,8 +81,12 @@ const checkAnswer = (button) => {
 }
 
 const playGame = (filmTitles, films) => {
-    playMenu.style.visibility = 'hidden'
+    playMenu.style.pointerEvents = 'none'
+    gameButtons.style.opacity = '0.5'
+    topContainer.classList.add('hidden')
+    title.classList.add('hidden')
     quoteElem.classList.remove('hidden')
+    scoreTimer.classList.remove('hidden')
     button1.classList.remove('hidden')
     button2.classList.remove('hidden')
     button3.classList.remove('hidden')
@@ -120,8 +121,10 @@ const endGame = () => {
     gameOverModal.showModal()
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
-    table.classList.add('hide_table')
+    gameScreen.classList.add('hidden')
+    scoreTimer.classList.add('hidden')
     leaderboardFunction()
+    showLeaderboard()
 }
 
 const countDownTimer = () => {
@@ -139,11 +142,14 @@ const countDown = () => {
 }
 
 const resetGame = () => {
+    gameOverModal.close()
     score = 0
     countDownValue = 30
     scoreBoxElem.textContent = score
     setupGame()
     playGame(filmTitles, films)
+    gameScreen.classList.remove('hidden')
+    scoreTimer.classList.remove('hidden')
 }
 
 instructionsButton.addEventListener('click', modal)
@@ -160,42 +166,37 @@ checkAnswer(button3)
 
 const nameInput = document.querySelector('.name')
 const addScoreButton = document.querySelector('.addScore')
-const leaderboardButton = document.querySelector('.leaderboard')
 const table = document.querySelector('table')
 
-const leaderboardFunction = () => {
-
-    addScoreButton.addEventListener('click', () => {
-        const player = {
-            game: 'MovieQuoteSprint',
-            name: nameInput.value,
-            score: score
+const addScores = () => {
+    const player = {
+        game: 'MovieQuoteSprint',
+        name: nameInput.value,
+        score: score
+    }
+    fetch('https://leaderboard.dev.io-academy.uk/score', {
+        method: 'POST',
+        body: JSON.stringify(player),
+        headers: {
+            'Content-Type': 'application/json'
         }
-        fetch('https://leaderboard.dev.io-academy.uk/score', {
-            method: 'POST',
-            body: JSON.stringify(player),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((response) => {
-            console.log(response)
-            return response.json()
-        }).then((data) => {
-            console.log(data)
-        })
     })
+        .then((response) => response.json())
+        .then((data) => {
+            showLeaderboard()
+        })
+}
 
-    leaderboardButton.addEventListener('click', () => {
-        fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteSprint').then((response) => {
-            console.log(response)
-            return response.json()
-        }).then((leaderBoardObject) => {
+const showLeaderboard = () => {
+    fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteSprint')
+        .then((response) => response.json())
+        .then((leaderBoardObject) => {
             const listNamesElem = document.querySelector('.names')
             const listScoresElem = document.querySelector('.scores')
             listNamesElem.textContent = ''
             listScoresElem.textContent = ''
-            table.classList.remove('hide_table')
-            leaderBoardObject.data.slice(0, 5).forEach((player) => {
+            leaderBoardObject.data.sort((a, b) => b.score - a.score)
+            leaderBoardObject.data.slice(0, 10).forEach((player) => {
                 const nameElem = document.createElement('p')
                 const scoreElem = document.createElement('p')
                 nameElem.textContent = player.name
@@ -204,9 +205,12 @@ const leaderboardFunction = () => {
                 listScoresElem.appendChild(scoreElem)
             })
         })
-    }
 }
 
+const leaderboardFunction = () => {
+    addScoreButton.removeEventListener('click', addScores)
+    addScoreButton.addEventListener('click', addScores)
+}
 
 
 

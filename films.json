@@ -1,7 +1,7 @@
 {
   "films": [
     {
-      "title": "Gone with the wind",
+      "title": "Gone with the Wind",
       "quote": "Frankly, my dear, I don't give a damn.",
       "year": "1939"
     },
@@ -46,7 +46,7 @@
       "year": "1980"
     },
     {
-      "title": "Terminator 2:  Judgment Day",
+      "title": "Terminator 2: Judgment Day",
       "quote": "Hasta la vista, baby.",
       "year": "1991"
     },
@@ -99,6 +99,86 @@
       "title": "Shrek",
       "quote": "Ogres are like onions.",
       "year": "2001"
+    },
+    {
+      "title": "Star Wars: Episode V - The Empire Strikes Back",
+      "quote": "No, I am your father.",
+      "year": "1980"
+    },
+    {
+      "title": "Pulp Fiction",
+      "quote": "English, motherf***er, do you speak it?",
+      "year": "1994"
+    },
+    {
+      "title": "The Dark Knight",
+      "quote": "Why so serious?",
+      "year": "2008"
+    },
+    {
+      "title": "Casablanca",
+      "quote": "Here's looking at you, kid.",
+      "year": "1942"
+    },
+    {
+      "title": "Fight Club",
+      "quote": "The first rule of Fight Club is: You do not talk about Fight Club.",
+      "year": "1999"
+    },
+    {
+      "title": "The Matrix",
+      "quote": "There is no spoon.",
+      "year": "1999"
+    },
+    {
+      "title": "Braveheart",
+      "quote": "They may take our lives, but they'll never take our freedom!",
+      "year": "1995"
+    },
+    {
+      "title": "Gladiator",
+      "quote": "Are you not entertained?",
+      "year": "2000"
+    },
+    {
+      "title": "V for Vendetta",
+      "quote": "Remember, remember, the Fifth of November.",
+      "year": "2005"
+    },
+    {
+      "title": "Apollo 13",
+      "quote": "Houston, we have a problem.",
+      "year": "1995"
+    },
+    {
+      "title": "The Lion King",
+      "quote": "Hakuna Matata.",
+      "year": "1994"
+    },
+    {
+      "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "quote": "This is the day you will always remember as the day you almost caught Captain Jack Sparrow!",
+      "year": "2003"
+    },
+    {
+      "title": "Back to the Future",
+      "quote": "Roads? Where we're going, we don't need roads.",
+      "year": "1985"
+    },
+    {
+      "title": "E.T. the Extra-Terrestrial",
+      "quote": "E.T. phone home.",
+      "year": "1982"
+    },
+    {
+      "title": "The Silence of the Lambs",
+      "quote": "I do wish we could chat longer, but I'm having an old friend for dinner.",
+      "year": "1991"
+    },
+    {
+      "title": "The Princess Bride",
+      "quote": "Hello. My name is Inigo Montoya. You killed my father. Prepare to die.",
+      "year": "1987"
     }
   ]
 }
