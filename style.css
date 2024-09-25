@@ -1,166 +1,137 @@
-@font-face {
-    font-family: 'NeueMontrealBook';
-    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMontrealItalic';
-    src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMontrealMedium';
-    src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMontrealSemiBoldItalic';
-    src: url('fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMontrealThin';
-    src: url('fonts/PPNeueMontreal-Thin.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GoshaSansBold';
-    src: url('fonts/PPGoshaSans-Bold.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GoshaSansRegular';
-    src: url('fonts/PPGoshaSans-Regular.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 body {
-    font-family: GoshaSansBold, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 header {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #661D09;
-    color: #FFF;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.appTitle {
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 2.5rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .topContainer {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.appTitle {
-    font-family: GoshaSansBold, sans-serif;
+.gameButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-.instructions p {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-#instructionsButton {
-    font-family: GoshaSansBold, sans-serif;
-}
-
-#closeButton {
-    font-family: GoshaSansBold, sans-serif;
-    width: 5rem;
-    border: solid black 1px;
+.instructionsButton, .play, .reset, .addScore, .closeButton {
+    background-color: #edb5b5;
+    color: #000000;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
     border-radius: 5px;
-    background-color: #FFFFFF;
-    padding: .5rem;
-}
-
-#play {
-    font-family: GoshaSansBold, sans-serif;
+    cursor: pointer;
+    text-align: center;
 }
 
 .modalContainer {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     display: none;
-    justify-content: center;
-    align-items: center;
 }
 
-.showModal {
-    display: flex;
-    z-index: 1;
-}
-
-.backgroundGreen {
-    background-color: #04ac04
-}
-
-.backgroundRed {
-    background-color: red;
-}
-
-.instructions{
-    font-family: GoshaSansBold, sans-serif;
+.modalContainer, .gameOverModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2D2D2D;
+    color: #F0F0F0;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    width: 500px;
     text-align: center;
-    background-color: black;
-    color: white;
-    width: 50%;
-    padding: 2rem;
+    font-family: 'Arial', sans-serif;
 }
 
-#gameButtons {
-    width: 60%;
+.instructions {
+    font-size: 1rem;
+}
+
+.scoreTimer {
+    position: fixed;
+    left: 28%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background-color: #661D09;
-    color: #FFF;
+    padding: 10px 20px;
+    max-width: 600px;
+    width: 65%;
+    margin-bottom: 3rem;
 }
 
-#gameButtons:hover {
-    cursor: pointer;
+.timerDisplay {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.meter {
+    width: 150px;
+    height: 20px;
 }
 
 .scoreSection {
-    width: 100px;
-    height: 100px;
-}
-
-#scoreBox {
-    font-size: 2rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .scoreLabel {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.scoreBox {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px 10px;
     text-align: center;
+    width: 45px;
 }
 
 .gameScreen {
-    display:flex;
+    margin-top: 60px;
+    text-align: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-top:3rem;
 }
 
 .quoteContainer {
-    margin: 2rem 3rem 4rem;
+    margin: 1rem 3rem 3rem;
     height: 4rem;
     display: flex;
     flex-direction: column;
@@ -173,7 +144,7 @@ header {
 }
 
 .quoteContainer p {
-    font-family: 'NeueMontrealItalic', sans-serif;
+    text-transform: none;
     text-align: center;
     font-size: 1.5rem;
 }
@@ -183,138 +154,94 @@ header {
     border-radius: 10%;
     filter: drop-shadow(8px 5px 10px #000000);
     width: 13rem;
-}
-
-button:hover {
-    cursor: pointer;
+    font-family: "Russo One", sans-serif;
+    height: 5rem;
 }
 
 .hintContainer button {
     margin-top: 4rem;
-    width: 8rem;
-    background-color: #661D09;
-    color: #FFFFFF;
+    background-color: #edb5b5;
     padding: 1rem;
     border-radius: 10%;
     filter: drop-shadow(8px 5px 10px #000000);
+    width: 13rem;
+    font-family: "Russo One", sans-serif;
 }
 
-.hintContainer button:hover {
-    cursor: pointer;
+.gameOver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.gO {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.lb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.reset {
+    margin-top: 2rem;
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
-.invisible {
-    visibility: hidden !important;
-}
+@media (max-width: 640px) {
 
-@media (max-width: 600px) {
-    .instructions p {
-        font-size: 0.7rem;
+
+
+    .instructionsButton, .play, .reset, .addScore, .closeButton {
+        font-size: 1rem;
+        padding: 8px 15px;
     }
 
-    .instructions {
-        width: 68.5%;
+    .scoreTimer {
+        width: 62%;
+        left: 22%;
     }
 
-    .gameScreen {
-        flex-direction: column;
-        padding-top: 1rem;
+    .timerDisplay {
+        font-size: 1.2rem;
     }
 
-    .titleContainer {
-        flex-direction: column;
+    .scoreLabel, .scoreBox {
+        font-size: 1.2rem;
+
+    }
+
+    .quoteContainer {
+        margin: 1rem;
+        height: auto;
     }
 
     .quoteContainer p {
         font-size: 1.2rem;
     }
-}
 
-@font-face {
-    font-family: 'DancingScript';
-    src: url('fonts/DancingScript-VariableFont_wght.ttf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
+    .titleContainer {
+        flex-direction: column;
+        gap: 2rem;
+    }
 
-#gameOverModal::backdrop {
-    backdrop-filter: blur(50px);
-    opacity: 0.75;
-}
+    .hintContainer button {
+        width: 130px;
+    }
 
-#gameOverModal{
-    padding: unset;
-}
-
-.modalStyle{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 81vh;
-    width: 81vw;
-    overflow: hidden;
-    background: radial-gradient(circle at center, grey, black);
-}
-
-.modalContents{
-    font-family: 'DancingScript', sans-serif;
-    background-color: rgba(195, 195, 195, 0.42);
-    padding: 20px;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #bfbfbf;
-    text-shadow: black 3px 3px;
-    box-shadow: 0 0 10px 5px #878787;
-}
-
-.modalContents h2 {
-    font-size: 4rem;
-    margin: 0
-}
-
-#score {
-    font-size: 2.5rem;
-}
-
-.score_intro {
-    font-size: 2.5rem;
-    height: 2rem;
-    margin: 0 0 2rem 0;
-}
-
-.modalContents button {
-    font-family: DancingScript, sans-serif;
-    background-color: transparent;
-    font-size: 1.5rem;
-    text-shadow: black 3px 3px;
-    border: none;
-    padding: 0.4rem 1rem;
-    color: white;
-    cursor: pointer;
-}
-
-.timer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-#timerDisplay {
-    margin-left: 30px;
-}
-
-#playButton{
-    margin-left: 20px;
+    .modalContainer, .gameOverModal {
+        padding: 2rem;
+        width: 90%;
+    }
 }
 

@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Film Quote Game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="script.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <header>
@@ -17,55 +14,77 @@
 </header>
 <main>
     <div class="topContainer">
-        <div class="timer">
-            <div id="timerDisplay"></div>
-            <meter value="" min="0" max="30" low=10 high=20 optimum="30" id="timerProgress"></meter>
-        </div>
-        <div id="gameButtons">
-            <div id="instructionsButton">Instructions</div>
+        <div class="gameButtons">
+            <div class="instructionsButton">Instructions</div>
             <div class="modalContainer">
                 <div class="instructions">
-                    <p>You have 30 seconds to prove you know your Rhett Butler from your Jack Torrence.</p>
-                    <p>Once you hit start/play/other the quiz will run through famous movie quotes.</p>
-                    <p>Each quote will have three possible films to select, and it’s down to you to choose the right one.</p>
-                    <p>Once you click on an answer, there is no going back so make sure you’re happy with your choice.</p>
-                    <p>Each correct answer gets a point, each wrong answer, well, better luck next time.</p>
-                    <p>Keep going until the timer runs out, or the questions run out (NOT BLOODY LIKELY!)</p>
-                    <p>With that all said and done, you’ve gotta ask yourself a question: “Do I feel lucky?”….Well, do ya, punk?</p>
-                    <button id="closeButton">Close</button>
+                    <p>You have 30 seconds to prove you know your Rhett Butler from your Jack Torrence.</p><br>
+                    <p>Once you hit play the quiz will run through famous movie quotes.</p><br>
+                    <p>Each quote will have three possible films to select, and it’s down to you to choose the right one.</p><br>
+                    <p>Once you click on an answer, there is no going back so make sure you’re happy with your choice.</p><br>
+                    <p>Each correct answer gets a point, each wrong answer, well, better luck next time.</p><br>
+                    <p>Keep going until the timer or the questions run out.</p><br>
+                    <p>If you get stuck, click the hint button, and you will be given the year the film was released.</p><br>
+                    <p>With that all said and done, you’ve gotta ask yourself a question: “Do I feel lucky?”….Well, do ya, punk?</p><br>
+                    <button class="closeButton">Close</button>
                 </div>
             </div>
-            <div id="play">Play</div>
+            <div class="play button">Play</div>
+        </div>
+    </div>
+    <div class="scoreTimer hidden">
+        <div>
+            <meter value="" min="0" max="30" low=10 high=20 optimum="30" class="timerProgress"></meter>
+            <div class="timerDisplay"></div>
         </div>
         <div class="scoreSection">
             <p class="scoreLabel">Score:</p>
-            <div id="scoreBox"></div>
+            <div class="scoreBox">0</div>
         </div>
     </div>
+
     <section class="gameScreen">
-         <div class="quoteContainer">
-             <p id="quote"></p>
-         </div>
-         <div class="titleContainer">
-             <button class="hidden button" id="btn1"></button>
-             <button class="hidden button" id="btn2"></button>
-             <button class="hidden button" id="btn3"></button>
-         </div>
-        <div class="hintContainer">
-            <button class="hidden" id="hintButton"></button>
+        <div class="quoteContainer">
+            <p class="quote"></p>
         </div>
-        <dialog id="gameOverModal">
-            <div class="modalStyle">
-                <div class="modalContents">
-                    <h2>GAME OVER!</h2>
-                    <p class="score_intro">Your score: <span id="score"></span></p>
-                    <form method="dialog">
-                        <button class="btn" id="reset">Reset</button>
-                    </form>
-                </div>
-            </div>
-        </dialog>
+        <div class="titleContainer">
+            <button class="hidden button btn1"></button>
+            <button class="hidden button btn2"></button>
+            <button class="hidden button btn3"></button>
+        </div>
+        <div class="hintContainer">
+            <button class="hidden hintButton"></button>
+        </div>
     </section>
+
+
+    <dialog class="gameOverModal">
+        <div class="gameOver">
+            <div class="gO">
+                <h2>GAME OVER!</h2>
+                <h2 class="score_intro">Your score: <span class="score"></span></h2>
+                <label>Name: <span><input class="name" type="text" required></span></label>
+                <br>
+                <input class="addScore" value="Add Score" type="submit">
+            </div>
+
+            <div class="lb">
+                <h2>LeaderBoard:</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td class="names"></td>
+                        <td class="scores"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <button class="btn reset">Reset</button>
+    </dialog>
 </main>
 </body>
 </html>

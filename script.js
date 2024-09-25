@@ -1,19 +1,26 @@
-const playButton = document.querySelector('#play')
-const playMenu = document.querySelector('#gameButtons')
-const button1 = document.querySelector('#btn1')
-const button2 = document.querySelector('#btn2')
-const button3 = document.querySelector('#btn3')
-const hintButton = document.querySelector('#hintButton')
-const scoreBoxElem = document.querySelector('#scoreBox')
-const quoteElem = document.querySelector('#quote')
-const instructionsButton = document.querySelector('#instructionsButton')
+
+const playButton = document.querySelector('.play')
+const playMenu = document.querySelector('.gameButtons')
+const button1 = document.querySelector('.btn1')
+const button2 = document.querySelector('.btn2')
+const button3 = document.querySelector('.btn3')
+const hintButton = document.querySelector('.hintButton')
+const scoreBoxElem = document.querySelector('.scoreBox')
+const quoteElem = document.querySelector('.quote')
+const instructionsButton = document.querySelector('.instructionsButton')
 const instructions = document.querySelector('.modalContainer')
-const closeButton = document.querySelector('#closeButton')
-const timerDisplay = document.querySelector("#timerDisplay")
-const timerProgress = document.querySelector("#timerProgress")
-const resetBtn = document.querySelector('#reset')
-const gameOverModal = document.querySelector('#gameOverModal')
-const scoreSpan = document.querySelector('#score')
+const closeButton = document.querySelector('.closeButton')
+const timerDisplay = document.querySelector(".timerDisplay")
+const timerProgress = document.querySelector(".timerProgress")
+const resetBtn = document.querySelector('.reset')
+const gameOverModal = document.querySelector('.gameOverModal')
+const scoreSpan = document.querySelector('.score')
+const gameButtons = document.querySelector('.gameButtons')
+const gameScreen = document.querySelector('.gameScreen')
+const scoreTimer = document.querySelector('.scoreTimer')
+const topContainer = document.querySelector('.topContainer')
+const title = document.querySelector('.appTitle')
+
 let filmTitles = []
 let films = []
 let score = 0
@@ -29,14 +36,16 @@ const fetchFilms = async () => {
 const setupGame = async () => {
     filmTitles = await fetchFilms()
     films = await fetchFilms()
+    playButton.addEventListener('click', () => playGame(filmTitles, films))
 }
 
-const openModal = () => {
-    instructions.classList.add('showModal')
-}
-
-const closeModal = () => {
-    instructions.classList.remove('showModal')
+const modal = () => {
+    if (instructions.style.display === 'none') {
+        instructions.style.display = 'flex';
+        instructions.style.zIndex = '1';
+    } else {
+        instructions.style.display = 'none';
+    }
 }
 
 function shuffleArray(array) {
@@ -48,28 +57,21 @@ function shuffleArray(array) {
     }
 }
 
-const uxEvents = (button) => {
+const checkAnswer = (button) => {
     button.addEventListener('click', () => {
         if (button.textContent === correctAnswer) {
-            button.classList.add('backgroundGreen')
+            button.style.backgroundColor = '#04ac04'
             score++
             scoreBoxElem.textContent = score
-            if (score % 5 === 0) {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: {y: .6}
-                })
-            }
-        } else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
-            button.classList.add('backgroundRed')
+        }
+        else if (button.textContent === wrongAnswer1 || button.textContent === wrongAnswer2) {
+            button.style.backgroundColor = 'red'
         }
         const interval = setInterval(() => {
-            button.classList.remove('backgroundGreen')
-            button.classList.remove('backgroundRed')
+            button.style.backgroundColor = '#efefef'
             clearInterval(interval)
             if (films.length >= 3) {
-                roundGenerator(filmTitles, films)
+                playGame(filmTitles, films)
             } else {
                 endGame()
             }
@@ -78,7 +80,17 @@ const uxEvents = (button) => {
     })
 }
 
-const roundGenerator = (filmTitles, films) => {
+const playGame = (filmTitles, films) => {
+    playMenu.style.pointerEvents = 'none'
+    gameButtons.style.opacity = '0.5'
+    topContainer.classList.add('hidden')
+    title.classList.add('hidden')
+    quoteElem.classList.remove('hidden')
+    scoreTimer.classList.remove('hidden')
+    button1.classList.remove('hidden')
+    button2.classList.remove('hidden')
+    button3.classList.remove('hidden')
+    hintButton.classList.remove('hidden')
     shuffleArray(films)
     const currentQuote = films.pop()
     quoteElem.textContent = "\"" + currentQuote.quote + "\""
@@ -109,6 +121,10 @@ const endGame = () => {
     gameOverModal.showModal()
     countDownValue = 30
     timerDisplay.textContent = countDownValue.toString()
+    gameScreen.classList.add('hidden')
+    scoreTimer.classList.add('hidden')
+    leaderboardFunction()
+    showLeaderboard()
 }
 
 const countDownTimer = () => {
@@ -126,35 +142,80 @@ const countDown = () => {
 }
 
 const resetGame = () => {
+    gameOverModal.close()
     score = 0
     countDownValue = 30
-    timerProgress.value = countDownValue
     scoreBoxElem.textContent = score
-    playGame()
+    setupGame()
+    playGame(filmTitles, films)
+    gameScreen.classList.remove('hidden')
+    scoreTimer.classList.remove('hidden')
 }
 
-const playGame = () => {
-    setupGame().then(() => {
-        playMenu.classList.add('invisible')
-        quoteElem.classList.remove('hidden')
-        button1.classList.remove('hidden')
-        button2.classList.remove('hidden')
-        button3.classList.remove('hidden')
-        hintButton.classList.remove('hidden')
-        roundGenerator(filmTitles, films)
-        countDownTimer()
-    })
-}
-
-playButton.addEventListener('click', playGame)
-instructionsButton.addEventListener('click', openModal)
-closeButton.addEventListener('click', closeModal)
+instructionsButton.addEventListener('click', modal)
+closeButton.addEventListener('click', modal)
+playButton.addEventListener('click', countDownTimer)
 timerDisplay.textContent = countDownValue.toString()
 resetBtn.addEventListener('click', resetGame)
+resetBtn.addEventListener('click', countDownTimer)
 
-uxEvents(button1)
-uxEvents(button2)
-uxEvents(button3)
+setupGame()
+checkAnswer(button1)
+checkAnswer(button2)
+checkAnswer(button3)
+
+const nameInput = document.querySelector('.name')
+const addScoreButton = document.querySelector('.addScore')
+const table = document.querySelector('table')
+
+const addScores = () => {
+    const player = {
+        game: 'MovieQuoteSprint',
+        name: nameInput.value,
+        score: score
+    }
+    fetch('https://leaderboard.dev.io-academy.uk/score', {
+        method: 'POST',
+        body: JSON.stringify(player),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            showLeaderboard()
+        })
+}
+
+const showLeaderboard = () => {
+    fetch('https://leaderboard.dev.io-academy.uk/scores?game=MovieQuoteSprint')
+        .then((response) => response.json())
+        .then((leaderBoardObject) => {
+            const listNamesElem = document.querySelector('.names')
+            const listScoresElem = document.querySelector('.scores')
+            listNamesElem.textContent = ''
+            listScoresElem.textContent = ''
+            leaderBoardObject.data.sort((a, b) => b.score - a.score)
+            leaderBoardObject.data.slice(0, 10).forEach((player) => {
+                const nameElem = document.createElement('p')
+                const scoreElem = document.createElement('p')
+                nameElem.textContent = player.name
+                scoreElem.textContent = player.score
+                listNamesElem.appendChild(nameElem)
+                listScoresElem.appendChild(scoreElem)
+            })
+        })
+}
+
+const leaderboardFunction = () => {
+    addScoreButton.removeEventListener('click', addScores)
+    addScoreButton.addEventListener('click', addScores)
+}
+
+
+
+
+
 
 
 
