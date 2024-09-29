@@ -83,13 +83,9 @@ header {
 }
 
 .scoreTimer {
-    position: fixed;
-    left: 30%;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    max-width: 600px;
-    width: 65%;
+    gap: 6rem;
+    justify-content: space-around;
     margin-bottom: 3rem;
 }
 
@@ -102,11 +98,6 @@ header {
 .meter {
     width: 150px;
     height: 20px;
-}
-
-.scoreSection {
-    display: flex;
-    align-items: center;
 }
 
 .scoreLabel {
@@ -207,10 +198,6 @@ header {
         padding: 8px 15px;
     }
 
-    .scoreTimer {
-        width: 62%;
-        left: 22%;
-    }
 
     .timerDisplay {
         font-size: 1.2rem;
