@@ -1,4 +1,4 @@
-#Film Quote Quiz Application - README
+## Film Quote Quiz Application - README
 
 Welcome to the Film Quote Quiz Application! This app is designed to test your knowledge of famous movie quotes. You'll be presented with quotes from various films, and your task is to guess which movie the quote is from. The application tracks your score and allows you to compete for a spot on the leaderboard.
 
@@ -9,6 +9,6 @@ Hints: if the player gets stuck, they can get a hint - the year the film was rel
 
 Installation & Setup
 Clone the repository:
-git clone ....
+git clone git@github.com:iO-Academy/2024-jul-fst-film-quote-quiz.git
 Navigate to the project folder:
 cd 2024-jul-fst-film-quote-quiz
